@@ -12,15 +12,15 @@ import javafx.stage.Stage;
  *
  * @author pedro
  */
-public class Main extends Application{
+public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-    // AbrirVentanas.cambiarVentana(AbrirVentanas.INICIO_SESION);
-     //AbrirVentanas.abrirAplicacion();
-     AbrirVentanas.abrirAplicacion();
+
+        AbrirVentanas.abrirAplicacion();
     }
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         launch();
     }
 }
