@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  */
 public class AbrirVentanas {
 
-    public static final String INICIO_APLICACION = "/fmxls/login/FXML_Start.fxml";
+    public static final String INICIO_APLICACION = "/fmxls/FXML_Start.fxml";
 
     public static void prueba() {
 

@@ -11,6 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 
+<!--
+    
+    Author     : pedro
+-->
+
 <StackPane fx:id="MainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="697.0" prefWidth="1057.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectov1.controllers.fxml.FXML_StartController">
     <children>
         <AnchorPane fx:id="mainPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: grey;">
@@ -19,7 +24,7 @@
                 <Button fx:id="btnStartRegistro" layoutX="818.0" layoutY="518.0" mnemonicParsing="false" onAction="#mostrarRegistro" text="Registrarse" />
                 <ImageView fitHeight="444.0" fitWidth="554.0" layoutX="85.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../images/logo.png" />
+                        <Image url="@../images/logo.png" />
                     </image>
                 </ImageView>
                 <Label layoutX="825.0" layoutY="248.0" text="Bienbenido" />
@@ -27,7 +32,7 @@
         </AnchorPane>
         <AnchorPane fx:id="LoginPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" visible="false">
             <children>
-                <AnchorPane fx:id="LoginPaneDesign" layoutX="472.0" layoutY="32.0" prefHeight="543.0" prefWidth="561.0" style="-fx-background-color: white;" stylesheets="@../../css/login.css">
+                <AnchorPane fx:id="LoginPaneDesign" layoutX="472.0" layoutY="32.0" prefHeight="543.0" prefWidth="561.0" style="-fx-background-color: white;">
                     <children>
                         <TextField fx:id="textUserName" layoutX="206.0" layoutY="132.0" promptText="nombre usuario" />
                         <Label layoutX="253.0" layoutY="53.0" text="Inicia sesión" />
@@ -49,7 +54,7 @@
                 </AnchorPane>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="RegisterPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: grey;">
+        <AnchorPane fx:id="RegisterPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: grey;" visible="false">
             <children>
                 <Label layoutX="481.0" layoutY="50.0" text="Creando una cuenta" />
                 <Label layoutX="44.0" layoutY="105.0" text="Tienes alguna cuenta" />
@@ -90,7 +95,3 @@
         </AnchorPane>
     </children>
 </StackPane>
-<!--
-    
-    Author     : pedro
--->
