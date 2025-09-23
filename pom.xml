@@ -24,13 +24,19 @@
             <version>8.0.33</version>
         </dependency>
         <!--  Hibernate core-->
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <!--         https://mvnrepository.com/artifact/org.hibernate/hibernate-core 
         <dependency>
-            <groupId>org.hibernate.orm</groupId>
+            <groupId>org.hibernate.orm</groupId>                 esto no va
             <artifactId>hibernate-core</artifactId>
             <version>7.1.1.Final</version>
             <type>pom</type>
-        </dependency>
+        </dependency>-->
+        <!-- Dependencia para Hibernate Core --> 
+        <dependency> 
+            <groupId>org.hibernate</groupId> 
+            <artifactId>hibernate-core</artifactId> 
+            <version>5.6.14.Final</version>  
+        </dependency> 
     </dependencies>
     <build>
         <plugins>
