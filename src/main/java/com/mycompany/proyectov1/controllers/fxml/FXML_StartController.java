@@ -4,9 +4,11 @@
  */
 package com.mycompany.proyectov1.controllers.fxml;
 
+import com.mycompany.proyectov1.Utils.AbrirVentanas;
 import com.mycompany.proyectov1.controllers.UsuarioControladora;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
@@ -86,13 +88,13 @@ public class FXML_StartController implements Initializable {
     }
 
     @FXML
-    private void validarUsuario() {
+    private void validarUsuario(ActionEvent event) {
         String auxnombreusuario = textUserName.getText();
         String auxcontraseña = hiddenPasswordTextField1.getText();
         System.out.println("validando usuario" + auxnombreusuario + " " + auxcontraseña);
        String resultado= UsuarioControladora.validarUsuario(auxnombreusuario,auxcontraseña);
        if(resultado.equals("valido")){
-           
+           AbrirVentanas.abrirPrincipal(event);
        }else if(resultado.equals("con")){
            System.out.println("cont invalida");
        }else {

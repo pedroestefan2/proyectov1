@@ -15,7 +15,7 @@ public class UsuarioControladora {
     }
 
     public static String validarUsuario(String auxnombreusuario, String auxcontraseña) {
-        return "";
+        return "valido";
 
     }
 

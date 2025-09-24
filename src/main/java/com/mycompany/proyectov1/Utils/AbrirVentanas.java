@@ -23,17 +23,18 @@ import javafx.stage.StageStyle;
 public class AbrirVentanas {
 
     public static final String INICIO_APLICACION = "/fmxls/FXML_Start.fxml";
+    public static final String INICIO_PRINCIPAL = "/fmxls/FXML_Principal.fxml";
 
     public static void prueba() {
 
         try {
-            FXMLLoader loader = new FXMLLoader(AbrirVentanas.class.getResource(INICIO_APLICACION));
+            FXMLLoader loader = new FXMLLoader(AbrirVentanas.class.getResource(INICIO_PRINCIPAL));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
             Stage stage = new Stage();
             stage.setScene(scene);
-
+            //stage.setResizable(true);//rrr
             stage.setTitle("Aplicación - Trident of Steel");
             stage.show();
 
@@ -54,10 +55,29 @@ public class AbrirVentanas {
             stage.setResizable(false); // Permite redimensionar
             //stage.initStyle(StageStyle.UNDECORATED); cambiaar stage
 
-
             stage.setTitle("Aplicación - Trident of Steel ");
             stage.show();
 
+        } catch (IOException ex) {
+            Logger.getLogger(AbrirVentanas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public static void abrirPrincipal(javafx.event.ActionEvent event) {
+        try {
+            //obtiene la ventana y la cierra
+            Stage stageActual = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stageActual.close();
+            //abre la nueva ventana
+            FXMLLoader loader = new FXMLLoader(AbrirVentanas.class.getResource(INICIO_PRINCIPAL));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Aplicación - Trident of Steel ");
+            stage.show();
         } catch (IOException ex) {
             Logger.getLogger(AbrirVentanas.class.getName()).log(Level.SEVERE, null, ex);
         }

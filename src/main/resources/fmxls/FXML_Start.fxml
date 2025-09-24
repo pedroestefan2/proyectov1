@@ -44,6 +44,7 @@
             <URL value="@../css/estilo_botones_inicio.css" />
          </stylesheets>
         </AnchorPane>
+<!--        Panel de login-->
         <AnchorPane fx:id="LoginPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" visible="false">
             <children>
                 <AnchorPane fx:id="LoginPaneDesign" layoutX="472.0" layoutY="32.0" prefHeight="543.0" prefWidth="561.0" style="-fx-background-color: #2F4E63;">
