@@ -8,14 +8,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
  *
  * @author pedro
  */
-public class FXML_PrincipalController implements Initializable {
+public class FXML_BattleMaquinaController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -23,24 +22,26 @@ public class FXML_PrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }
+    }    
     @FXML
-    private VBox vBoxInicio;
-    @FXML
-    private VBox vBoxBattle;
-
-    @FXML
-    private void mostrarInicio() {
-        vBoxInicio.setVisible(true);
-        vBoxBattle.setVisible(false);
+    private void SeleccionarEnemigo() {
+       
  
     }
-
     @FXML
-    private void mostrarBattlePane() {
-        vBoxBattle.setVisible(true);
-        vBoxInicio.setVisible(false);
-
+    private void SeleccionarNave() {
+       
+ 
     }
-
+    @FXML
+    private void Atacar() {
+       
+ 
+    }
+     @FXML
+    private void Defender() {
+       
+ 
+    }
+    
 }

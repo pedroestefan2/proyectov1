@@ -43,7 +43,7 @@
                     </padding>
                     <children>
                         <ImageView fitHeight="40.0" fitWidth="40.0" preserveRatio="true" style="-fx-border-color: #69c0ff; -fx-border-width: 2; -fx-border-radius: 50; -fx-background-radius: 50;" />
-                        <Label text="Capitán Kraken" textFill="white">
+                        <Label text="Capitan username" textFill="white">
                             <font>
                                 <Font size="14.0" />
                             </font>
@@ -57,7 +57,7 @@
         </HBox>
         <VBox prefHeight="200.0" prefWidth="150.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="75.0">
             <children>
-                <Button fx:id="btnInicio" mnemonicParsing="false" prefHeight="25.0" prefWidth="159.0" text="Inicio">
+                <Button fx:id="btnInicio" mnemonicParsing="false" onAction="#mostrarInicio" prefHeight="25.0" prefWidth="159.0" text="Inicio">
                     <VBox.margin>
                         <Insets top="40.0" />
                     </VBox.margin>
@@ -67,7 +67,7 @@
                         <Insets top="10.0" />
                     </VBox.margin>
                 </Button>
-                <Button fx:id="btnInicio1" mnemonicParsing="false" prefHeight="25.0" prefWidth="159.0" text="Jugar">
+                <Button fx:id="btnBattle" mnemonicParsing="false" onAction="#mostrarBattlePane" prefHeight="25.0" prefWidth="159.0" text="Jugar">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>
@@ -87,12 +87,17 @@
                         <Insets top="10.0" />
                     </VBox.margin>
                 </Button>
+            <Button fx:id="btnAjustes1" mnemonicParsing="false" prefHeight="25.0" prefWidth="159.0" text="Ajustes">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
             </children>
         </VBox>
         <!--      stackpane-->
         <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
             <children>
-                <VBox alignment="CENTER" spacing="40"> 
+                <VBox fx:id="vBoxInicio" alignment="CENTER" spacing="40"> 
                     <children>
                         <HBox alignment="CENTER">
                             <children>
@@ -131,6 +136,13 @@
                                 </VBox>
                             </children>
                         </HBox>
+                    </children>
+                </VBox>
+                <!--                Panel de lucha : maquina o vs jugador-->
+                <VBox fx:id="vBoxBattle" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20" visible="false">
+                    <children>
+                        <Button fx:id="btnLucharMaquina" prefWidth="200" text="Luchar contra la máquina" />
+                        <Button fx:id="btnLucharJugador" prefWidth="200" text="Luchar contra un jugador" />
                     </children>
                 </VBox>
             </children>

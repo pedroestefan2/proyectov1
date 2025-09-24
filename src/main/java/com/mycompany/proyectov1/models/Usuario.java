@@ -4,11 +4,14 @@
  */
 package com.mycompany.proyectov1.models;
 
+import java.util.List;
+
 /**
  *
  * @author pedro
  */
 public class Usuario {
+
     private int id;
     private String nombreusuario;
     private String nombre;
@@ -16,17 +19,21 @@ public class Usuario {
     private String telefono;
     private String correo;
     private String contraseña;
+    private List<Barco> barcos;
+    //monedas ficticias
+    private int oro;
+    private int hierro;
 
     public Usuario() {
     }
 
-    public Usuario(int id, String nombre, String apellidos, String telefono, String correo, String contraseña) {
-        this.id = id;
+    public Usuario(String nombreusuario, String nombre, String apellidos, String telefono, String correo, String contraseña) {
+        //id autgenera mysql
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.telefono = telefono;
         this.correo = correo;
-        this.contraseña = contraseña;// hasear contraseña futuro con BCrypt
+        this.contraseña = contraseña;// cofificar contraseña futuro con BCrypt
     }
 
     public int getId() {
@@ -76,6 +83,29 @@ public class Usuario {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
-    
-    
+
+    public String getNombreusuario() {
+        return nombreusuario;
+    }
+
+    public void setNombreusuario(String nombreusuario) {
+        this.nombreusuario = nombreusuario;
+    }
+
+    public int getOro() {
+        return oro;
+    }
+
+    public void setOro(int oro) {
+        this.oro = oro;
+    }
+
+    public int getHierro() {
+        return hierro;
+    }
+
+    public void setHierro(int hierro) {
+        this.hierro = hierro;
+    }
+
 }
