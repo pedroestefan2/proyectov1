@@ -1,0 +1,35 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 24 sept 2025, 2:46:51
+    Author     : pedro
+*/
+.button {
+    -fx-background-color: #B22222; /* Rojo intenso */
+    -fx-text-fill: #E8E8E8; /* Texto blanco frío */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #5E6A72; /* Gris metálico */
+    -fx-border-width: 1px;
+    -fx-cursor: hand;
+    -fx-padding: 10 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 8, 0.4, 0, 2);
+}
+
+/* Hover - resplandor en naranja fuego */
+.button:hover {
+    -fx-background-color: #E25822; /* Naranja fuego */
+    -fx-text-fill: #FFFFFF; /* Texto blanco puro para mejor contraste */
+    -fx-effect: dropshadow(gaussian, #E25822, 20, 0.6, 0, 0);
+}
+
+/* Active (cuando se presiona) - resplandor más fuerte con azul acero */
+.button:pressed {
+    -fx-background-color: #2F4E63; /* Azul acero naval */
+    -fx-text-fill: #E8E8E8;
+    -fx-effect: dropshadow(gaussian, #00ccff, 25, 0.8, 0, 0);
+}

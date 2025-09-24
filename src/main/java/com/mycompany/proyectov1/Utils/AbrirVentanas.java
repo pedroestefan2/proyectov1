@@ -11,8 +11,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -32,7 +34,7 @@ public class AbrirVentanas {
             Stage stage = new Stage();
             stage.setScene(scene);
 
-            stage.setTitle("Aplicación - Prueba");
+            stage.setTitle("Aplicación - Trident of Steel");
             stage.show();
 
         } catch (IOException ex) {
@@ -48,8 +50,12 @@ public class AbrirVentanas {
 
             Stage stage = new Stage();
             stage.setScene(scene);
+            //stage.sizeToScene();  // Se ajusta al tamaño del contenido
+            stage.setResizable(false); // Permite redimensionar
+            //stage.initStyle(StageStyle.UNDECORATED); cambiaar stage
 
-            stage.setTitle("Aplicación - Inicio ");
+
+            stage.setTitle("Aplicación - Trident of Steel ");
             stage.show();
 
         } catch (IOException ex) {
