@@ -5,6 +5,7 @@
 package com.mycompany.proyectov1;
 
 import com.mycompany.proyectov1.Utils.AbrirVentanas;
+import com.mycompany.proyectov1.Utils.ConectarBD;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -17,8 +18,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        AbrirVentanas.prueba();
-       // AbrirVentanas.abrirAplicacion();
+        //AbrirVentanas.prueba();
+        AbrirVentanas.abrirAplicacion();
+        ConectarBD.ConectarDB();
     }
 
     public static void main(String[] args) {

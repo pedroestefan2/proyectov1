@@ -24,11 +24,14 @@ public class AbrirVentanas {
 
     public static final String INICIO_APLICACION = "/fmxls/FXML_Start.fxml";
     public static final String INICIO_PRINCIPAL = "/fmxls/FXML_Principal.fxml";
+    public static final String INICIO_BATALLA_MAQUINA = "/fmxls/FXML_BattleMaquina.fxml";
+    public static final String INICIO_BATALLA_JUGADOR = "/fmxls/FXML_BattlePlayerl.fxml";
+    private static Stage stagePrincipal;
 
     public static void prueba() {
 
         try {
-            FXMLLoader loader = new FXMLLoader(AbrirVentanas.class.getResource(INICIO_PRINCIPAL));
+            FXMLLoader loader = new FXMLLoader(AbrirVentanas.class.getResource(INICIO_BATALLA_MAQUINA));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
@@ -84,7 +87,20 @@ public class AbrirVentanas {
 
     }
 
-    public static void cambiarVentana(String rutaFXML) {
+    public static void cambiarVentana(String rutaFXML,Stage stage) {
+         try {
+        FXMLLoader loader = new FXMLLoader(AbrirVentanas.class.getResource(rutaFXML));
+        Parent root = loader.load();
+
+        // Obtener el Stage desde el nodo que lanzó el evento
+        
+
+        // Reemplazar el contenido del Scene con el nuevo FXML
+        stage.getScene().setRoot(root);
+
+    } catch (IOException ex) {
+        Logger.getLogger(AbrirVentanas.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
     }
 }

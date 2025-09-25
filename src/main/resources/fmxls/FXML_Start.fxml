@@ -49,7 +49,7 @@
             <children>
                 <AnchorPane fx:id="LoginPaneDesign" layoutX="472.0" layoutY="32.0" prefHeight="543.0" prefWidth="561.0" style="-fx-background-color: #2F4E63;">
                     <children>
-                        <TextField fx:id="textUserName" layoutX="206.0" layoutY="132.0" promptText="nombre usuario" />
+                        <TextField fx:id="textUserName" layoutX="206.0" layoutY="132.0" onAction="#borrarUsername" promptText="nombre usuario" />
                         <Label layoutX="253.0" layoutY="53.0" text="Inicia sesión" />
                         <Button fx:id="btnSiguiente" layoutX="248.0" layoutY="259.0" mnemonicParsing="false" onAction="#validarUsuario" text="Siguiente" />
                         <Button fx:id="btnRecoverUser" layoutX="202.0" layoutY="309.0" mnemonicParsing="false" onAction="#abrirRecover" text="¿Olvidastes tu contraseña?" />

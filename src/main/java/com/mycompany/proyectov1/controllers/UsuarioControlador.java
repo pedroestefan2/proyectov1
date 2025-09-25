@@ -8,7 +8,7 @@ package com.mycompany.proyectov1.controllers;
  *
  * @author pedro
  */
-public class UsuarioControladora {
+public class UsuarioControlador {
 
     public static String guardarUsuario(String auxuser, String auxnombre, String auxapellido, String auxcorreo, String auxtelf, String auxcontraseña) {
         return "";

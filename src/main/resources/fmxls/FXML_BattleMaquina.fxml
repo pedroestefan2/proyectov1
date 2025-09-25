@@ -28,7 +28,7 @@
                   </Label>
                </children>
             </VBox>
-            <GridPane fx:id="gridbtn" layoutX="571.0" prefHeight="200.0" prefWidth="564.0">
+            <GridPane fx:id="gridbtn" layoutX="667.0" prefHeight="200.0" prefWidth="564.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="1.0" prefWidth="1.0" />
@@ -63,7 +63,12 @@
                         <Label layoutX="168.0" layoutY="48.0" text="Salud : 100" textFill="#e0e1dd" />
                      </children>
                   </Pane>
-                  <Pane fx:id="seleccionarBarco" layoutX="394.0" layoutY="486.0" prefHeight="200.0" prefWidth="571.0" style="-fx-background-color: #1B263B;" />
+                  <Pane fx:id="seleccionarBarco" layoutX="749.0" layoutY="486.0" prefHeight="200.0" prefWidth="571.0" style="-fx-background-color: #1B263B;">
+                     <children>
+                        <Button layoutX="122.0" layoutY="75.0" mnemonicParsing="false" text="Barco1" />
+                        <Button layoutX="286.0" layoutY="75.0" mnemonicParsing="false" text="Barco2" />
+                        <Button layoutX="467.0" layoutY="75.0" mnemonicParsing="false" text="Barco3" />
+                     </children></Pane>
                   <Pane fx:id="datosjugador" layoutY="605.0" prefHeight="81.0" prefWidth="364.0" style="-fx-background-color: #1B263B;">
                      <children>
                         <Label layoutX="112.0" layoutY="14.0" text="Capitan username" textFill="#e0e1dd">
@@ -76,7 +81,7 @@
                   </Pane>
                   <Pane fx:id="barcoSeleccionado" layoutX="82.0" layoutY="340.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1B263B;" />
                   <Pane fx:id="barcoSeleccionadoEnemigo" layoutX="619.0" layoutY="116.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1B263B;" />
-                  <Label layoutX="1177.0" layoutY="645.0" text="Contador : 30" textFill="RED">
+                  <Label layoutY="1.0" text="Contador : 30" textFill="RED">
                      <font>
                         <Font size="18.0" />
                      </font>

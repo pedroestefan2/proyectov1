@@ -5,16 +5,21 @@
 package com.mycompany.proyectov1.controllers.fxml;
 
 import com.mycompany.proyectov1.Utils.AbrirVentanas;
-import com.mycompany.proyectov1.controllers.UsuarioControladora;
+import com.mycompany.proyectov1.controllers.UsuarioControlador;
+import com.mycompany.proyectov1.dao.ComprobarUsuarioBD;
+import com.mycompany.proyectov1.dao.RegistrarUsuarioBD;
+import com.mycompany.proyectov1.models.Usuario;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -75,6 +80,13 @@ public class FXML_StartController implements Initializable {
     }
 
     @FXML
+    private void borrarUsername() {
+
+        textUserNameReg.clear();
+        limpiarEstiloCampo(textUserNameReg);
+    }
+
+    @FXML
     private void mostrarContraseña() {
         if (showPassword1.isSelected()) {
             passwordTextField1.setText(hiddenPasswordTextField1.getText());
@@ -92,14 +104,21 @@ public class FXML_StartController implements Initializable {
         String auxnombreusuario = textUserName.getText();
         String auxcontraseña = hiddenPasswordTextField1.getText();
         System.out.println("validando usuario" + auxnombreusuario + " " + auxcontraseña);
-       String resultado= UsuarioControladora.validarUsuario(auxnombreusuario,auxcontraseña);
-       if(resultado.equals("valido")){
-           AbrirVentanas.abrirPrincipal(event);
-       }else if(resultado.equals("con")){
-           System.out.println("cont invalida");
-       }else {
-           System.out.println("no existe");
-    }
+        Usuario usuario = ComprobarUsuarioBD.login(auxnombreusuario, auxcontraseña);
+        if (usuario != null) {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            AbrirVentanas.cambiarVentana(AbrirVentanas.INICIO_PRINCIPAL, stage);
+        } else {
+            if (ComprobarUsuarioBD.existeUsuario(auxnombreusuario)) {
+                passwordTextField1.setVisible(true);
+                passwordTextField1.setText("Contraseña incorrecta");
+                System.out.println("cont invalida");
+            } else {
+                textUserName.setVisible(true);
+                textUserName.setText("Usuario incorrecto");
+                System.out.println("no existe");
+            }
+        }
 
     }
 
@@ -141,23 +160,39 @@ public class FXML_StartController implements Initializable {
         String auxcorreo = textCorreoReg.getText();
         String auxtelf = textTelfReg.getText();
         String auxcontraseña = hiddenPasswordTextField.getText();
-        
-        if(chkAceptarTerminos.isSelected()){
-            
-            System.out.println("Creando usuario");
-           String resultado= UsuarioControladora.guardarUsuario(auxuser,auxnombre,auxapellido,auxcorreo,auxtelf,auxcontraseña);
-           if(resultado.equals("valido")){
-               
-           }else if(resultado.equals("invalido")){
-               
-           }else{
-               System.out.println("Error desconocido");
-           }
-        }else{
+        boolean camposValidos = true;
+        if (chkAceptarTerminos.isSelected()) {
+            if (auxuser.isBlank() || auxnombre.isBlank() || auxapellido.isBlank() || auxcorreo.isBlank() || auxtelf.isBlank() || auxcontraseña.isBlank()) {
+                System.out.println("Algunos Campos estan vacios");
+            }
+            // verificar duplicados
+            if (ComprobarUsuarioBD.existeUsuario(auxuser)) {
+                textUserNameReg.setText("Nombre de usuario ya existente");
+                textUserNameReg.setStyle("-fx-border-color: red; -fx-text-fill: red;");
+                camposValidos = false;
+            }
+
+            if (ComprobarUsuarioBD.existeCorreo(auxcorreo)) {
+                textCorreoReg.setText("Correo ya existente");
+                textCorreoReg.setStyle("-fx-border-color: red; -fx-text-fill: red;");
+                camposValidos = false;
+            }
+
+            if (camposValidos) {
+                boolean registrado = RegistrarUsuarioBD.registrarUsuario(auxuser, auxnombre, auxapellido, auxtelf, auxcorreo, auxcontraseña);
+
+                if (registrado) {
+                    System.out.println("Usuario registrado con éxito.");
+                } else {
+                    System.out.println("Error al registrar el usuario.");
+                }
+
+            }
+
+        } else {
             System.out.println("Acepta las condiciones");
         }
-        
-     
+
     }
 
     // parte de recuperar contraseña
@@ -168,4 +203,11 @@ public class FXML_StartController implements Initializable {
 
     }
 
+
+
+    private void limpiarEstiloCampo(TextField campo) {
+        campo.setStyle("");
+    }
+
+    
 }

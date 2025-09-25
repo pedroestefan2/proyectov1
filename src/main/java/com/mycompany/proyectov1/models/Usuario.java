@@ -13,16 +13,18 @@ import java.util.List;
 public class Usuario {
 
     private int id;
-    private String nombreusuario;
+    private String nombreUsuario;
     private String nombre;
     private String apellidos;
     private String telefono;
     private String correo;
     private String contraseña;
-    private List<Barco> barcos;
+    private String imagen;
+
     //monedas ficticias
     private int oro;
     private int hierro;
+    private int suministros;
 
     public Usuario() {
     }
@@ -42,6 +44,14 @@ public class Usuario {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getNombre() {
@@ -85,11 +95,11 @@ public class Usuario {
     }
 
     public String getNombreusuario() {
-        return nombreusuario;
+        return nombreUsuario;
     }
 
     public void setNombreusuario(String nombreusuario) {
-        this.nombreusuario = nombreusuario;
+        this.nombreUsuario = nombreusuario;
     }
 
     public int getOro() {
@@ -106,6 +116,22 @@ public class Usuario {
 
     public void setHierro(int hierro) {
         this.hierro = hierro;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public int getSuministros() {
+        return suministros;
+    }
+
+    public void setSuministros(int suministros) {
+        this.suministros = suministros;
     }
 
 }
