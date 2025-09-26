@@ -5,7 +5,7 @@
 package com.mycompany.proyectov1.controllers.fxml;
 
 import com.mycompany.proyectov1.Utils.AbrirVentanas;
-import com.mycompany.proyectov1.controllers.UsuarioControlador;
+import com.mycompany.proyectov1.controllers.UsuarioPrincipalControlador;
 import com.mycompany.proyectov1.dao.ComprobarUsuarioBD;
 import com.mycompany.proyectov1.dao.RegistrarUsuarioBD;
 import com.mycompany.proyectov1.models.Usuario;
@@ -82,7 +82,7 @@ public class FXML_StartController implements Initializable {
     @FXML
     private void borrarUsername() {
 
-        textUserNameReg.clear();
+        // textUserNameReg.clear();
         limpiarEstiloCampo(textUserNameReg);
     }
 
@@ -107,7 +107,7 @@ public class FXML_StartController implements Initializable {
         Usuario usuario = ComprobarUsuarioBD.login(auxnombreusuario, auxcontraseña);
         if (usuario != null) {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            AbrirVentanas.cambiarVentana(AbrirVentanas.INICIO_PRINCIPAL, stage);
+            AbrirVentanas.cambiarVentana(usuario,AbrirVentanas.INICIO_PRINCIPAL, stage);
         } else {
             if (ComprobarUsuarioBD.existeUsuario(auxnombreusuario)) {
                 passwordTextField1.setVisible(true);
@@ -168,13 +168,11 @@ public class FXML_StartController implements Initializable {
             // verificar duplicados
             if (ComprobarUsuarioBD.existeUsuario(auxuser)) {
                 textUserNameReg.setText("Nombre de usuario ya existente");
-                textUserNameReg.setStyle("-fx-border-color: red; -fx-text-fill: red;");
                 camposValidos = false;
             }
 
             if (ComprobarUsuarioBD.existeCorreo(auxcorreo)) {
                 textCorreoReg.setText("Correo ya existente");
-                textCorreoReg.setStyle("-fx-border-color: red; -fx-text-fill: red;");
                 camposValidos = false;
             }
 
@@ -203,11 +201,9 @@ public class FXML_StartController implements Initializable {
 
     }
 
-
-
     private void limpiarEstiloCampo(TextField campo) {
         campo.setStyle("");
+        campo.setText("");
     }
 
-    
 }

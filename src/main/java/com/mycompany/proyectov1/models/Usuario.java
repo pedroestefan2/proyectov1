@@ -94,14 +94,6 @@ public class Usuario {
         this.contraseña = contraseña;
     }
 
-    public String getNombreusuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreusuario(String nombreusuario) {
-        this.nombreUsuario = nombreusuario;
-    }
-
     public int getOro() {
         return oro;
     }

@@ -8,7 +8,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectov1.controllers.fxml.FXML_PrincipalController">
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/24.0.1" fx:controller="com.mycompany.proyectov1.controllers.fxml.FXML_PrincipalJugarController">
    <children>
       <Pane prefHeight="111.0" prefWidth="1100.0" style="-fx-background-color: blue;">
          <children>
@@ -27,9 +28,15 @@
       </Pane>
       <Pane layoutY="111.0" prefHeight="690.0" prefWidth="200.0" style="-fx-background-color: grey;">
          <children>
-            <Button layoutX="64.0" layoutY="39.0" mnemonicParsing="false" text="Inicio" />
-            <Button fx:id="btnJugarPane" layoutX="64.0" layoutY="100.0" mnemonicParsing="false" onAction="#mostrarBattlePane" text="Jugar" />
+            <Button fx:id="btnInicio" layoutX="64.0" layoutY="39.0" mnemonicParsing="false" onAction="#CargarInicio" text="Inicio" />
+            <Button fx:id="btnJugarPane" layoutX="64.0" layoutY="100.0" mnemonicParsing="false"  text="Jugar" />
             <Button fx:id="btnAjustes" layoutX="60.0" layoutY="168.0" mnemonicParsing="false" text="ajustes" />
+         </children>
+      </Pane>
+      <Pane layoutX="241.0" layoutY="132.0" prefHeight="645.0" prefWidth="844.0" style="-fx-background-color: red;">
+         <children>
+            <Button fx:id="btnCargarBattlePaneMaquina" layoutX="353.0" layoutY="215.0" mnemonicParsing="false" onAction="#CargarBattlePaneMaquina" text="Luchar contra la Maquina" />
+            <Button layoutX="353.0" layoutY="266.0" mnemonicParsing="false" text="Luchar contra un jugador" />
          </children>
       </Pane>
    </children>

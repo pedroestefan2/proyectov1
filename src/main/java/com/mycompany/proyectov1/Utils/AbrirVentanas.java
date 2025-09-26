@@ -4,6 +4,11 @@
  */
 package com.mycompany.proyectov1.Utils;
 
+import com.mycompany.proyectov1.controllers.UsuarioPrincipalControlador;
+import com.mycompany.proyectov1.controllers.fxml.FXML_PrincipalController;
+import com.mycompany.proyectov1.controllers.fxml.FXML_PrincipalJugarController;
+import com.mycompany.proyectov1.interfaces.ControladorConUsuario;
+import com.mycompany.proyectov1.models.Usuario;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +29,7 @@ public class AbrirVentanas {
 
     public static final String INICIO_APLICACION = "/fmxls/FXML_Start.fxml";
     public static final String INICIO_PRINCIPAL = "/fmxls/FXML_Principal.fxml";
+    public static final String INICIO_PRINCIPAL_JUGAR = "/fmxls/FXML_PrincipalJugar.fxml";
     public static final String INICIO_BATALLA_MAQUINA = "/fmxls/FXML_BattleMaquina.fxml";
     public static final String INICIO_BATALLA_JUGADOR = "/fmxls/FXML_BattlePlayerl.fxml";
     private static Stage stagePrincipal;
@@ -67,40 +73,41 @@ public class AbrirVentanas {
 
     }
 
-    public static void abrirPrincipal(javafx.event.ActionEvent event) {
+    public static void cambiarVentana(String rutaFXML, Stage stage) {
         try {
-            //obtiene la ventana y la cierra
-            Stage stageActual = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-            stageActual.close();
-            //abre la nueva ventana
-            FXMLLoader loader = new FXMLLoader(AbrirVentanas.class.getResource(INICIO_PRINCIPAL));
+            FXMLLoader loader = new FXMLLoader(AbrirVentanas.class.getResource(rutaFXML));
             Parent root = loader.load();
-            Scene scene = new Scene(root);
 
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("Aplicación - Trident of Steel ");
-            stage.show();
+            // Obtener el Stage desde el nodo que lanzó el evento
+            // Reemplazar el contenido del Scene con el nuevo FXML
+            stage.getScene().setRoot(root);
+
         } catch (IOException ex) {
             Logger.getLogger(AbrirVentanas.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    public static void cambiarVentana(String rutaFXML,Stage stage) {
-         try {
-        FXMLLoader loader = new FXMLLoader(AbrirVentanas.class.getResource(rutaFXML));
-        Parent root = loader.load();
+    public static void cambiarVentana(Usuario usuario, String rutaFXML, Stage stage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(AbrirVentanas.class.getResource(rutaFXML));
+            Parent root = loader.load();
 
-        // Obtener el Stage desde el nodo que lanzó el evento
-        
+            Object controlador = loader.getController();
+            if (controlador instanceof ControladorConUsuario) {
+                ((ControladorConUsuario) controlador).setUsuario(usuario);
+            }
 
-        // Reemplazar el contenido del Scene con el nuevo FXML
-        stage.getScene().setRoot(root);
+            // Pasar el usuario
+            //UsuarioPrincipalControlador.setUsuario(usuario);
+            // Reemplazar el contenido del Scene con el nuevo FXML
+            stage.getScene().setRoot(root);
+            stage.sizeToScene();
 
-    } catch (IOException ex) {
-        Logger.getLogger(AbrirVentanas.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AbrirVentanas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
-    }
 }

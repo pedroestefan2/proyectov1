@@ -80,80 +80,54 @@ public class TablasBD {
                  """;
 
             String tablaEfectividadMovimiento = """
-    CREATE TABLE IF NOT EXISTS Efectividad_Movimiento (
-        id_tipo_atacante INTEGER,
-        id_tipo_defensor INTEGER,
-        efectividad DECIMAL(3, 2),
-        PRIMARY KEY (id_tipo_atacante, id_tipo_defensor),
-        FOREIGN KEY (id_tipo_atacante) REFERENCES Tipos_Movimiento(id),
-        FOREIGN KEY (id_tipo_defensor) REFERENCES Tipos_Movimiento(id)
-    );
-""";
+                   CREATE TABLE IF NOT EXISTS Efectividad_Movimiento (
+                   id_tipo_atacante INTEGER,
+                   id_tipo_defensor INTEGER,
+                   efectividad DECIMAL(3, 2),
+                   PRIMARY KEY (id_tipo_atacante, id_tipo_defensor),
+                   FOREIGN KEY (id_tipo_atacante) REFERENCES Tipos_Movimiento(id),
+                   FOREIGN KEY (id_tipo_defensor) REFERENCES Tipos_Movimiento(id)
+                    );
+                 """;
 
             String tablaBarcoMovimiento = """
-    CREATE TABLE IF NOT EXISTS Barco_Movimiento (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        id_barco INTEGER,
-        id_movimiento INTEGER,
-        FOREIGN KEY (id_barco) REFERENCES Barcos(id),
-        FOREIGN KEY (id_movimiento) REFERENCES Movimientos(id)
-    );
-""";
+                   CREATE TABLE IF NOT EXISTS Barco_Movimiento (
+                   id INTEGER PRIMARY KEY AUTOINCREMENT,
+                   id_barco INTEGER,
+                   id_movimiento INTEGER,
+                    FOREIGN KEY (id_barco) REFERENCES Barcos(id),
+                   FOREIGN KEY (id_movimiento) REFERENCES Movimientos(id)
+                     );
+                """;
 
             String tablaBatallas = """
-    CREATE TABLE IF NOT EXISTS Batallas (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        id_jugador1 INTEGER NOT NULL,
-        id_jugador2 INTEGER NOT NULL,
-        estado TEXT DEFAULT 'en curso',
-        turno_actual INTEGER,
-        fecha_inicio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        fecha_terminacion TIMESTAMP
-    );
-""";
+                   CREATE TABLE IF NOT EXISTS Batallas (
+                   id INTEGER PRIMARY KEY AUTOINCREMENT,
+                   id_jugador1 INTEGER NOT NULL,
+                   id_jugador2 INTEGER NOT NULL,
+                   estado TEXT DEFAULT 'en curso',
+                   turno_actual INTEGER,
+                   fecha_inicio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                   fecha_terminacion TIMESTAMP
+                  );
+               """;
 
             String tablaAcciones = """
-    CREATE TABLE IF NOT EXISTS Acciones (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        id_batalla INTEGER,
-        id_jugador INTEGER,
-        id_barco INTEGER,
-        id_movimiento INTEGER,
-        daño INTEGER,
-        estado_aplicado TEXT,
-        fecha_accion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (id_batalla) REFERENCES Batallas(id),
-        FOREIGN KEY (id_jugador) REFERENCES Usuario(id),
-        FOREIGN KEY (id_barco) REFERENCES Barcos(id),
-        FOREIGN KEY (id_movimiento) REFERENCES Movimientos(id)
-    );
-""";
-
-            String tablaChats = """
-    CREATE TABLE IF NOT EXISTS Chats (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        id_usuario1 INTEGER NOT NULL,
-        id_usuario2 INTEGER NOT NULL,
-        fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        CONSTRAINT unique_chat UNIQUE (id_usuario1, id_usuario2),
-        CHECK (id_usuario1 < id_usuario2),
-        FOREIGN KEY (id_usuario1) REFERENCES Usuario(id) ON DELETE CASCADE,
-        FOREIGN KEY (id_usuario2) REFERENCES Usuario(id) ON DELETE CASCADE
-    );
-""";
-
-            String tablaMensajes = """
-    CREATE TABLE IF NOT EXISTS Mensajes (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        id_chat INTEGER NOT NULL,
-        id_emisor INTEGER NOT NULL,
-        mensaje TEXT,
-        imagen TEXT,
-        fecha_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (id_chat) REFERENCES Chats(id) ON DELETE CASCADE,
-        FOREIGN KEY (id_emisor) REFERENCES Usuario(id) ON DELETE CASCADE
-    );
-""";
+                   CREATE TABLE IF NOT EXISTS Acciones (
+                   id INTEGER PRIMARY KEY AUTOINCREMENT,
+                   id_batalla INTEGER,
+                   id_jugador INTEGER,
+                   id_barco INTEGER,
+                   id_movimiento INTEGER,
+                   daño INTEGER,
+                   estado_aplicado TEXT,
+                   fecha_accion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                   FOREIGN KEY (id_batalla) REFERENCES Batallas(id),
+                   FOREIGN KEY (id_jugador) REFERENCES Usuario(id),
+                   FOREIGN KEY (id_barco) REFERENCES Barcos(id),
+                   FOREIGN KEY (id_movimiento) REFERENCES Movimientos(id)
+                   );
+                 """;
 
             stm.execute(tablaUsuario);
             stm.execute(tablaBarcos);
@@ -164,19 +138,16 @@ public class TablasBD {
             stm.execute(tablaBarcoMovimiento);
             stm.execute(tablaBatallas);
             stm.execute(tablaAcciones);
-            stm.execute(tablaChats);
-            stm.execute(tablaMensajes);
 
 //            agregamos usuarios admin y maquina
             String insertUsuarios = """
                    INSERT INTO Usuario (
                    nombreusuario, nombre, apellidos, telefono, correo, contraseña, imagen, oro, hierro, suministros
                    ) VALUES
-                   ('root', 'Administrador', 'Sistema', '123456789', 'root@example.com', 'root', '/images/imagenporDefecto.png', 1000, 500, 800),
-                   ('Magallanes', 'AI', 'Robot', '987654321', 'maquina@example.com', 'root', '/images/imagenporDefecto.png', 800, 300, 600);
+                   ('root', 'Administrador', 'Sistema', '123456789', 'root@gmail.com', 'root', '/images/imagenporDefecto.png', 1000, 500, 800),
+                   ('Magallanes', 'AI', 'Robot', '987654321', 'maquina@gmail.com', 'root', '/images/imagenporDefecto.png', 800, 300, 600);
                   """;
-            
-            
+
             stm.executeUpdate(insertUsuarios);
             System.out.println("Tabla creada");
         } catch (SQLException ex) {

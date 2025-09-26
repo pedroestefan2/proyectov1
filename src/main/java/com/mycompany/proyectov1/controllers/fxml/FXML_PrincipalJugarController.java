@@ -5,7 +5,6 @@
 package com.mycompany.proyectov1.controllers.fxml;
 
 import com.mycompany.proyectov1.Utils.AbrirVentanas;
-import com.mycompany.proyectov1.controllers.UsuarioPrincipalControlador;
 import com.mycompany.proyectov1.interfaces.ControladorConUsuario;
 import com.mycompany.proyectov1.models.Usuario;
 import java.net.URL;
@@ -15,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -23,35 +21,40 @@ import javafx.stage.Stage;
  *
  * @author pedro
  */
-public class FXML_PrincipalController implements Initializable,ControladorConUsuario {
+public class FXML_PrincipalJugarController implements Initializable,ControladorConUsuario {
 
     private Usuario usuarioPrincipal;
 
     /**
      * Initializes the controller class.
      */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }
     @FXML
     private Label UsernamePrincipal;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        //si pones algo aqui peta
-        // TODO
+    @FXML 
+    public  void CargarInicio(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        AbrirVentanas.cambiarVentana(usuarioPrincipal,AbrirVentanas.INICIO_PRINCIPAL, stage);
     }
 
     @FXML
-    private void mostrarBattlePane(ActionEvent event) {
+    public  void CargarBattlePaneMaquina(ActionEvent event) {
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        AbrirVentanas.cambiarVentana(usuarioPrincipal, AbrirVentanas.INICIO_PRINCIPAL_JUGAR, stage);
+        AbrirVentanas.cambiarVentana(AbrirVentanas.INICIO_BATALLA_MAQUINA, stage);
 
     }
 
     @Override
     public void setUsuario(Usuario usuario) {
-        this.usuarioPrincipal = usuario;
+       this.usuarioPrincipal=usuario;
         if (usuario != null && UsernamePrincipal != null) {
-            UsernamePrincipal.setText(usuario.getNombreUsuario());
-        }
+        UsernamePrincipal.setText(usuario.getNombreUsuario());
+    }
     }
 
 }
