@@ -21,7 +21,8 @@ public class ComprobarUsuarioBD {
 
     public static boolean existeUsuario(String nombreUsuario) {
         String consulta = "SELECT * FROM Usuario WHERE nombreusuario = ?";
-        try (Connection conexion = ConectarBD.ConectarDB(); PreparedStatement st = conexion.prepareStatement(consulta)) {
+        try (Connection conexion = ConectarBD.ConectarDB(); 
+                PreparedStatement st = conexion.prepareStatement(consulta)) {
             st.setString(1, nombreUsuario);
             try (ResultSet rs = st.executeQuery()) {
                 return rs.next();
@@ -35,7 +36,8 @@ public class ComprobarUsuarioBD {
 
     public static boolean existeCorreo(String correo) {
         String consulta = "SELECT * FROM Usuario WHERE correo = ?";
-        try (Connection conexion = ConectarBD.ConectarDB(); PreparedStatement st = conexion.prepareStatement(consulta)) {
+        try (Connection conexion = ConectarBD.ConectarDB(); 
+                PreparedStatement st = conexion.prepareStatement(consulta)) {
             st.setString(1, correo);
             try (ResultSet rs = st.executeQuery()) {
                 return rs.next();
@@ -51,7 +53,8 @@ public class ComprobarUsuarioBD {
     public static Usuario login(String nombreUsuario, String contraseña) {
         String consulta = "SELECT * FROM Usuario WHERE nombreusuario = ? AND contraseña = ?";
 
-        try (Connection conexion = ConectarBD.ConectarDB(); PreparedStatement st = conexion.prepareStatement(consulta)) {
+        try (Connection conexion = ConectarBD.ConectarDB(); 
+                PreparedStatement st = conexion.prepareStatement(consulta)) {
             st.setString(1, nombreUsuario);
             st.setString(2, contraseña);
 

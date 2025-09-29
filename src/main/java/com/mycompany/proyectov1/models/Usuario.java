@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyectov1.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +26,15 @@ public class Usuario {
     private int oro;
     private int hierro;
     private int suministros;
+    
+    
+    //lista de barcos y lista en su mazo
+    ArrayList <Barco> listabarcos = new ArrayList<>();
+    ArrayList <Barco> listabarcosMazo = new ArrayList<>();
+
+  
+
+    
 
     public Usuario() {
     }
@@ -124,6 +134,55 @@ public class Usuario {
 
     public void setSuministros(int suministros) {
         this.suministros = suministros;
+    }
+    
+    
+    
+    //barcos añadir quitar y lime de 3 barcos por usuario
+    
+    public ArrayList<Barco> getListabarcos() {
+        return listabarcos;
+    }
+
+    public void setListabarcos(ArrayList<Barco> listabarcos) {
+       
+        this.listabarcos = listabarcos;
+        
+    }
+    
+    public void eliminarBarco(Barco barco){
+        for(Barco b:this.listabarcos){
+            if(b.getId()==barco.getId()){
+               this.listabarcos.remove(b);
+            }
+        }
+    }
+    
+    public void añadirBarco(Barco barco){
+        this.listabarcos.add(barco);
+    }
+    
+     public ArrayList<Barco> getListabarcosMazo() {
+        return listabarcosMazo;
+    }
+
+    public void setListabarcosMazo(ArrayList<Barco> listabarcosMazo) {
+        if(listabarcos.size()<3){
+        this.listabarcos = listabarcos;
+        }
+    }
+    public void eliminarBarcoMazo(Barco barco){
+        for(Barco b:this.listabarcos){
+            if(b.getId()==barco.getId()){
+               this.listabarcos.remove(b);
+            }
+        }
+    }
+    
+    public void añadirBarcoMazo(Barco barco){
+        if(listabarcos.size()<3){
+        this.listabarcos.add(barco);
+        }
     }
 
 }
