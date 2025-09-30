@@ -219,6 +219,7 @@ public class TablasBD {
                    ('Bombardeo de saturación', 3, 110, 85, 10,'normal'), 
                    ('Reparación ligera', 6, 0, 100, 15,'normal'),         -- Recupera 25% de vida
                    ('Reparación media', 6, 0, 100, 10,'normal'),          -- Recupera 50% de vida --24
+                                         
                    - Movimientos especiales
                    ('Furia del Yamato', 1, 220, 90, 4,'especial'),         -- solo Yamato   --25
                    ('Misil Tomahawk', 5, 200, 85, 3,'especial'),          -- solo EE.UU.
@@ -227,7 +228,7 @@ public class TablasBD {
                    ('Fuego británico', 1, 190, 90, 5,'especial'),         -- solo barcos ingleses
                    ('Bombardeo real', 3, 210, 70, 3,'especial'),          -- portaaviones reales        --30
                    ('Explosión de cadena', 1, 160, 85, 6,'especial'),           -- para barcos pesados  
-                   
+                   ('Emboscada Especial', 2, 120, 100, 5,'especial'),
                    ('Lluvia infernal', 3, 200, 80, 3,'especial'),              -- portaaviones japoneses
                    ('Emboscada táctica', 2, 140, 100, 5,'especial'),           -- submarinos alemanes     --34
                    ('Muro defensivo', 6, 0, 100, 8,'especial'),                -- reduce daño por 2 turnos         --35
@@ -349,23 +350,23 @@ public class TablasBD {
                                                 
                                                 -- Barco 5
                                                 (5, 6), (5, 16), (5, 18),
-                                                (5, 39), (5, 40),
+                                                (5, 34), (5, 38),
                                                 (5, 52),
                                                 
                                                 -- Barco 6
                                                 (6, 16), (6, 17), (6, 18),
-                                                (6, 41), (6, 42),
+                                                (6, 34), (6, 38),
                                                 (6, 62),
                                                 
                                                 -- Barco 7
                                                 (7, 19), (7, 20), (7, 21),
-                                                (7, 43), (7, 44),
+                                                (7, 34), (7, 38),
                                                 (7, 52),
                                                 
                                                 -- Barco 8
-                                                (8, 22), (8, 23), (8, 24),
-                                                (8, 45), (8, 46),
-                                                (8, 68),
+                                                (8, 8), (8, 9), (8, 14),
+                                                (8, 39), (8, 41),
+                                                (8, 55),
                                                 
                                                 -- Barco 9
                                                 (9, 25), (9, 26), (9, 27),
