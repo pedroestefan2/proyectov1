@@ -96,7 +96,7 @@ public class MovimientosBD {
         ex.printStackTrace();
         Logger.getLogger(ComprobarUsuarioBD.class.getName()).log(Level.SEVERE, null, ex);
     }
-    return -1; // o un valor que indique que no se encontró
+    return -1; //  valor que indique que no se encontró
 }
 
     

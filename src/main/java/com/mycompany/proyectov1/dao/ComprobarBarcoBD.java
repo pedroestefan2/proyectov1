@@ -26,10 +26,10 @@ public class ComprobarBarcoBD {
         return null;
 
     }
-    
+
     public static ArrayList<Barco> BuscarBarcosUsuarioBD(Usuario usuario) {
-        String consulta="Select Barco.* From Usuario_Barco JOIN Barcos on id_usuario=id_usuario WHERE id_usuario=?";
-         ArrayList<Barco> listabarcos = new ArrayList<>();
+        String consulta = "Select Barco.* From Usuario_Barco JOIN Barcos on id_usuario=id_usuario WHERE id_usuario=?";
+        ArrayList<Barco> listabarcos = new ArrayList<>();
         try (Connection conexion = ConectarBD.ConectarDB(); PreparedStatement st = conexion.prepareStatement(consulta)) {
             st.setInt(1, usuario.getId());
 
@@ -48,18 +48,30 @@ public class ComprobarBarcoBD {
                 }
             }
             return listabarcos;
-        
-        
-    }   catch (SQLException ex) {
+
+        } catch (SQLException ex) {
             Logger.getLogger(ComprobarBarcoBD.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
-    
-    public static ArrayList<Barco> CambiarBarcosMazoIABD(Usuario usuario) {// la ia tiene 10 barcos y el mazo se cambia automaticamente
-        
-        return null;
-        
+
+    public static boolean CambiarBarcosMazoIABD(Usuario usuario, ArrayList<Barco> seleccionFianal) {// sellecion son 3 barcos
+        String consulta = "UPDATE Usuario_Barco SET es_en_mazo=TRUE WHERE id_usuario=? AND id_barco IN (?,?,?)";
+        try (Connection conexion = ConectarBD.ConectarDB(); PreparedStatement st = conexion.prepareStatement(consulta)) {
+            st.setInt(1, usuario.getId());
+            st.setInt(2, seleccionFianal.get(1).getId());
+            st.setInt(3, seleccionFianal.get(2).getId());
+            st.setInt(4, seleccionFianal.get(3).getId());
+            
+            int filactualizadas=st.executeUpdate();
+            return filactualizadas==3;
+        } catch (SQLException ex) {
+            Logger.getLogger(ComprobarBarcoBD.class.getName()).log(Level.SEVERE, null, ex);
+             return false;
+        }
+
+       
+
     }
 
     public static ArrayList<Barco> BuscarBarcosMazoBD(Usuario usuario) {
@@ -91,17 +103,17 @@ public class ComprobarBarcoBD {
         return null;
 
     }
-        private static boolean AñadirbarcoUSuario(Usuario usuario, Barco barco) {
+
+    private static boolean AñadirbarcoUSuario(Usuario usuario, Barco barco) {
         String consulta = "INSERT INTO Usuario_Barco (id_usuario,id_barco,es_en_mazo) VALUES(?,?,false)";
-        try(Connection conexion=ConectarBD.ConectarDB();
-                PreparedStatement st= conexion.prepareStatement(consulta)){
+        try (Connection conexion = ConectarBD.ConectarDB(); PreparedStatement st = conexion.prepareStatement(consulta)) {
             st.setInt(1, usuario.getId());
             st.setInt(2, barco.getId());
-           
-            try(ResultSet rs=st.executeQuery()){
+
+            try (ResultSet rs = st.executeQuery()) {
                 return rs.next();
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(ComprobarBarcoBD.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -110,18 +122,16 @@ public class ComprobarBarcoBD {
 
     }
 
-
-    private static boolean AñadirMazobarco(Usuario usuario, Barco barco) {
+    private static boolean AñadirMazobarco(Usuario usuario, Barco barco) {//cambiar
         String consulta = "UPDATE Usuario_Barco SET es_en_mazo=TRUE WHERE id_usuario=? AND id_barco=?";
-        try(Connection conexion=ConectarBD.ConectarDB();
-                PreparedStatement st= conexion.prepareStatement(consulta)){
+        try (Connection conexion = ConectarBD.ConectarDB(); PreparedStatement st = conexion.prepareStatement(consulta)) {
             st.setInt(1, usuario.getId());
             st.setInt(2, barco.getId());
-           
-            try(ResultSet rs=st.executeQuery()){
+
+            try (ResultSet rs = st.executeQuery()) {
                 return rs.next();
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(ComprobarBarcoBD.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -130,32 +140,39 @@ public class ComprobarBarcoBD {
 
     }
 
-    public static boolean QuitarMazoBarco(Usuario usuario, Barco barco) {
+    public static boolean QuitarMazoBarco(Usuario usuario, Barco barco) {//cambiar
         String consulta = "UPDATE Usuario_Barco SET es_en_mazo=FALSE WHERE id_usuario=? AND id_barco=?";
-        try(Connection conexion=ConectarBD.ConectarDB();
-                PreparedStatement st= conexion.prepareStatement(consulta)){
+        try (Connection conexion = ConectarBD.ConectarDB(); PreparedStatement st = conexion.prepareStatement(consulta)) {
             st.setInt(1, usuario.getId());
             st.setInt(2, barco.getId());
-            
-            try(ResultSet rs=st.executeQuery()){
+
+            try (ResultSet rs = st.executeQuery()) {
                 return rs.next();
             }
-           
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(ComprobarBarcoBD.class.getName()).log(Level.SEVERE, null, ex);
         }
-
 
         return false;
 
     }
 
-    public static void QuitarBarcosMazo(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public static boolean QuitarBarcosMazo(Usuario usuario) {
+        String consulta = "UPDATE Usuario_Barco SET es_en_mazo=FALSE WHERE id_usuario=?";
+        try (Connection conexion = ConectarBD.ConectarDB(); PreparedStatement st = conexion.prepareStatement(consulta)) {
+            st.setInt(1, usuario.getId());
+
+            try (ResultSet rs = st.executeQuery()) {
+                return rs.next();
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ComprobarBarcoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
+
     }
-    
-    
-    
 
 }

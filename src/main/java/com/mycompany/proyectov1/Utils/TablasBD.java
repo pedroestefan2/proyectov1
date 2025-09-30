@@ -196,15 +196,18 @@ public class TablasBD {
             String insertarMovimientos = """
                    INSERT INTO Movimientos (nombre, id_tipo, poder, acierto, pp ,tipo) VALUES                            
                    ('Cañón ligero', 1, 90, 95, 25,'normal'),
-                   ('Explosión precisa', 1, 130, 90, 10,'normal'),
+                   ('Doble cañon',1,110,60,10,'normal'),
+                   ('Cañon Explosivo',1,100,80,15,'normal'),                         
+                   ('Cañon pesado', 1, 130, 90, 10,'normal'),
+                   ('Cañon perforante',1,300,20,30,'normal'),                      
                    ('Salva torpedos', 2, 160, 80, 8,'normal'),
                    ('Torpedo guiado', 2, 140, 90, 6,'normal'),
                    ('Bombardeo rápido', 3, 120, 85, 10,'normal'),
                    ('Lluvia de bombas', 3, 150, 75, 6,'normal'),
                    ('Barrido antisubmarino', 4, 170, 85, 5,'normal'),
-                   ('Caza de profundidad', 4, 150, 90, 6,'normal'),
+                   ('Carga de profundidad', 4, 150, 90, 6,'normal'),
                    ('Misil táctico', 5, 160, 85, 8,'normal'),
-                   ('Carga blindada', 5, 180, 80, 5,'normal'),                --10
+                   ('Carga blindada', 5, 180, 80, 5,'normal'),                --13
                    ('Escudo naval', 6, 0, 100, 10,'normal'), -- Aumenta defensa
                    ('Disparo de cobertura', 1, 70, 100, 25,'normal'),
                    ('Ataque silencioso', 2, 90, 100, 20,'normal'),
@@ -215,7 +218,7 @@ public class TablasBD {
                    ('Reforzar casco', 6, 0, 100, 10,'normal'), -- Aumenta defensa
                    ('Bombardeo de saturación', 3, 110, 85, 10,'normal'), 
                    ('Reparación ligera', 6, 0, 100, 15,'normal'),         -- Recupera 25% de vida
-                   ('Reparación media', 6, 0, 100, 10,'normal'),          -- Recupera 50% de vida --21
+                   ('Reparación media', 6, 0, 100, 10,'normal'),          -- Recupera 50% de vida --24
                    - Movimientos especiales
                    ('Furia del Yamato', 1, 220, 90, 4,'especial'),         -- solo Yamato
                    ('Misil Tomahawk', 5, 200, 85, 3,'especial'),          -- solo EE.UU.
@@ -226,7 +229,7 @@ public class TablasBD {
                    ('Explosión de cadena', 1, 160, 85, 6,'especial'),           -- para barcos pesados  
                    
                    ('Lluvia infernal', 3, 200, 80, 3,'especial'),              -- portaaviones japoneses
-                   ('Emboscada táctica', 2, 140, 100, 5,'especial'),           -- submarinos alemanes     --30
+                   ('Emboscada táctica', 2, 140, 100, 5,'especial'),           -- submarinos alemanes     --34
                    ('Muro defensivo', 6, 0, 100, 8,'especial'),                -- reduce daño por 2 turnos
                    ('Misil de pulso', 5, 180, 85, 4,'especial'),               -- tecnología avanzada 
                    ('Fuego cruzado', 1, 150, 85, 6,'especial'),                   -- barcos con múltiples torretas
@@ -236,9 +239,9 @@ public class TablasBD {
                    ('Campo de interferencia', 6, 0, 100, 6,'especial'),           -- baja precisión enemiga
                    ('Escudo reflectante', 6, 0, 100, 3,'especial'),               -- devuelve parte del daño 
                    ('Refuerzo del casco', 6, 0, 100, 8,'especial'),         -- Aumenta defensa durante 3 turnos
-                   ('Blindaje reactivo', 6, 0, 100, 5,'especial'),          -- Reduce el daño recibido en un 50% por 2 turnos    --40
+                   ('Blindaje reactivo', 6, 0, 100, 5,'especial'),          -- Reduce el daño recibido en un 50% por 2 turnos    --44
                    ('Campo de reparación', 6, 0, 100, 5,'especial'),        -- Regenera un poco de vida cada turno (por 3 turnos)
-                   ('Barrera energética', 6, 0, 100, 3,'especial'),         -- Inmune al siguiente ataque            --42            
+                   ('Barrera energética', 6, 0, 100, 3,'especial'),         -- Inmune al siguiente ataque            --46            
                                        
                     --Ultimates (muy poderosos, de un solo uso o muy limitado)
                     ('Tormenta de acero', 1, 300, 90, 1,'ulti'),       -- Ultimate de acorazados
@@ -248,14 +251,14 @@ public class TablasBD {
                     ('Invasión total', 3, 300, 80, 1,'ulti'),               -- ataque aéreo masivo
                     ('Sombra abisal', 4, 290, 90, 1,'ulti'),                -- ultimate submarino
                     ('Juicio orbital', 5, 350, 75, 1,'ulti'),               -- ultimate tecnológico
-                    ('Fortaleza impenetrable', 6, 0, 100, 1,'ulti'),        -- aumenta mucho la defensa   --50
+                    ('Fortaleza impenetrable', 6, 0, 100, 1,'ulti'),        -- aumenta mucho la defensa   --54
                     ('Tormenta oceánica', 3, 280, 85, 1,'ulti'),               -- gran ataque de bombardeo
                     ('Tifón silencioso', 4, 260, 100, 1,'ulti'),               -- submarino especial
                     ('Impacto orbital', 5, 350, 70, 1,'ulti'),                 -- ultra tecnología
                     ('Última esperanza', 1, 300, 95, 1,'ulti'),                -- solo si la vida es baja
                     ('Orden del almirante', 6, 0, 100, 1,'ulti'),              -- aumenta todas las estadísticas   
                     ('Milagro del astillero', 6, 0, 100, 1,'ulti'),            -- Una maniobra de soporte definitiva que activa todos los sistemas de reparación, recuperando completamente la vida del barco, restaurando todos los PP y eliminando cualquier estado negativo. Además, aumenta la defensa por 3 turnos.       
-                    ('Torpedo nuclear',2,250,70,1,'ulti');                   --  u 234        58                   
+                    ('Torpedo nuclear',2,250,70,1,'ulti');                   --  u 234        62                   
                                        
                                        """;
 
@@ -325,7 +328,7 @@ public class TablasBD {
             String insertablaBarcoMovimiento = """
                        INSERT INTO Barco_Movimiento (id_barco, id_movimiento) VALUES
                                                 -- Barco 1
-                                                (1, 1), (1, 2), (1, 3),
+                                                (1, 1), (1, 4), (1, 3),
                                                 (1, 31), (1, 32),
                                                 (1, 61),
                                                 
