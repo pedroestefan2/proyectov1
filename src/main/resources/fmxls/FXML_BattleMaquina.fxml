@@ -55,7 +55,7 @@
                <children>
                   <Pane fx:id="datosenemigo" layoutX="956.0" prefHeight="81.0" prefWidth="364.0" style="-fx-background-color: #1B263B;">
                      <children>
-                        <Label layoutX="112.0" layoutY="14.0" text="Capitan username" textFill="#e0e1dd">
+                        <Label layoutX="112.0" layoutY="14.0" text="Enemigo username" textFill="#e0e1dd">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -63,15 +63,15 @@
                         <Label layoutX="168.0" layoutY="48.0" text="Salud : 100" textFill="#e0e1dd" />
                      </children>
                   </Pane>
-                  <Pane fx:id="seleccionarBarco" layoutX="749.0" layoutY="486.0" prefHeight="200.0" prefWidth="571.0" style="-fx-background-color: #1B263B;">
+                  <Pane fx:id="seleccionarBarco" layoutX="895.0" layoutY="527.0" prefHeight="159.0" prefWidth="425.0" style="-fx-background-color: #1B263B;">
                      <children>
-                        <Button layoutX="122.0" layoutY="75.0" mnemonicParsing="false" text="Barco1" />
-                        <Button layoutX="286.0" layoutY="75.0" mnemonicParsing="false" text="Barco2" />
-                        <Button layoutX="467.0" layoutY="75.0" mnemonicParsing="false" text="Barco3" />
+                        <Button layoutX="63.0" layoutY="75.0" mnemonicParsing="false" text="Barco1" />
+                        <Button layoutX="186.0" layoutY="75.0" mnemonicParsing="false" text="Barco2" />
+                        <Button layoutX="283.0" layoutY="75.0" mnemonicParsing="false" text="Barco3" />
                      </children></Pane>
                   <Pane fx:id="datosjugador" layoutY="605.0" prefHeight="81.0" prefWidth="364.0" style="-fx-background-color: #1B263B;">
                      <children>
-                        <Label layoutX="112.0" layoutY="14.0" text="Capitan username" textFill="#e0e1dd">
+                        <Label layoutX="112.0" layoutY="14.0" text="username" textFill="#e0e1dd">
                            <font>
                               <Font size="18.0" />
                            </font>

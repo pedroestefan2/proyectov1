@@ -195,48 +195,48 @@ public class TablasBD {
                     """;
             String insertarMovimientos = """
                    INSERT INTO Movimientos (nombre, id_tipo, poder, acierto, pp ,tipo) VALUES                            
-                   ('Cañón ligero', 1, 90, 95, 25,'normal'),
+                   ('Cañón ligero', 1, 90, 95, 25,'normal'),  --1
                    ('Doble cañon',1,110,60,10,'normal'),
                    ('Cañon Explosivo',1,100,80,15,'normal'),                         
                    ('Cañon pesado', 1, 130, 90, 10,'normal'),
-                   ('Cañon perforante',1,300,20,30,'normal'),                      
+                   ('Cañon perforante',1,300,20,30,'normal'),    --5                  
                    ('Salva torpedos', 2, 160, 80, 8,'normal'),
                    ('Torpedo guiado', 2, 140, 90, 6,'normal'),
                    ('Bombardeo rápido', 3, 120, 85, 10,'normal'),
                    ('Lluvia de bombas', 3, 150, 75, 6,'normal'),
-                   ('Barrido antisubmarino', 4, 170, 85, 5,'normal'),
+                   ('Barrido antisubmarino', 4, 170, 85, 5,'normal'),   --10
                    ('Carga de profundidad', 4, 150, 90, 6,'normal'),
                    ('Misil táctico', 5, 160, 85, 8,'normal'),
                    ('Carga blindada', 5, 180, 80, 5,'normal'),                --13
                    ('Escudo naval', 6, 0, 100, 10,'normal'), -- Aumenta defensa
-                   ('Disparo de cobertura', 1, 70, 100, 25,'normal'),
+                   ('Disparo de cobertura', 1, 70, 100, 25,'normal'),               --15
                    ('Ataque silencioso', 2, 90, 100, 20,'normal'),
                    ('Torpedo acústico', 2, 120, 85, 10,'normal'),
                    ('Bombardeo en picado', 3, 130, 80, 8,'normal'),
                    ('Mina naval', 3, 110, 90, 10,'normal'), 
-                   ('Misil de crucero', 5, 150, 90, 6,'normal'),   
+                   ('Misil de crucero', 5, 150, 90, 6,'normal'),               --20
                    ('Reforzar casco', 6, 0, 100, 10,'normal'), -- Aumenta defensa
                    ('Bombardeo de saturación', 3, 110, 85, 10,'normal'), 
                    ('Reparación ligera', 6, 0, 100, 15,'normal'),         -- Recupera 25% de vida
                    ('Reparación media', 6, 0, 100, 10,'normal'),          -- Recupera 50% de vida --24
                    - Movimientos especiales
-                   ('Furia del Yamato', 1, 220, 90, 4,'especial'),         -- solo Yamato
+                   ('Furia del Yamato', 1, 220, 90, 4,'especial'),         -- solo Yamato   --25
                    ('Misil Tomahawk', 5, 200, 85, 3,'especial'),          -- solo EE.UU.
                    ('Cañones triples', 1, 180, 85, 5,'especial'),         -- solo Bismarck/Tirpitz
                    ('Golpe de sigilo', 2, 170, 100, 3,'especial'),        -- solo submarinos
                    ('Fuego británico', 1, 190, 90, 5,'especial'),         -- solo barcos ingleses
-                   ('Bombardeo real', 3, 210, 70, 3,'especial'),          -- portaaviones reales
+                   ('Bombardeo real', 3, 210, 70, 3,'especial'),          -- portaaviones reales        --30
                    ('Explosión de cadena', 1, 160, 85, 6,'especial'),           -- para barcos pesados  
                    
                    ('Lluvia infernal', 3, 200, 80, 3,'especial'),              -- portaaviones japoneses
                    ('Emboscada táctica', 2, 140, 100, 5,'especial'),           -- submarinos alemanes     --34
-                   ('Muro defensivo', 6, 0, 100, 8,'especial'),                -- reduce daño por 2 turnos
-                   ('Misil de pulso', 5, 180, 85, 4,'especial'),               -- tecnología avanzada 
+                   ('Muro defensivo', 6, 0, 100, 8,'especial'),                -- reduce daño por 2 turnos         --35
+                   ('Misil de pulso', 5, 180, 85, 4,'especial'),               -- tecnología avanzada            
                    ('Fuego cruzado', 1, 150, 85, 6,'especial'),                   -- barcos con múltiples torretas
                    ('Doble torpedo', 2, 180, 75, 5,'especial'),                   -- submarinos de ataque
                    ('Fuego napalm', 3, 160, 80, 5,'especial'),                    -- portaaviones especializados
-                   ('Carga electromagnética', 5, 190, 90, 4,'especial'),          -- tecnología avanzada
-                   ('Campo de interferencia', 6, 0, 100, 6,'especial'),           -- baja precisión enemiga
+                   ('Carga electromagnética', 5, 190, 90, 4,'especial'),          -- tecnología avanzada            --40
+                   ('Campo de interferencia', 6, 0, 100, 6,'especial'),           -- baja precisión enemiga           
                    ('Escudo reflectante', 6, 0, 100, 3,'especial'),               -- devuelve parte del daño 
                    ('Refuerzo del casco', 6, 0, 100, 8,'especial'),         -- Aumenta defensa durante 3 turnos
                    ('Blindaje reactivo', 6, 0, 100, 5,'especial'),          -- Reduce el daño recibido en un 50% por 2 turnos    --44
@@ -244,10 +244,10 @@ public class TablasBD {
                    ('Barrera energética', 6, 0, 100, 3,'especial'),         -- Inmune al siguiente ataque            --46            
                                        
                     --Ultimates (muy poderosos, de un solo uso o muy limitado)
-                    ('Tormenta de acero', 1, 300, 90, 1,'ulti'),       -- Ultimate de acorazados
+                    ('Tormenta de acero', 1, 300, 90, 1,'ulti'),       -- Ultimate de acorazados   --47
                     ('Juicio naval', 5, 280, 85, 1,'ulti'),            -- Ultimate misiles
                     ('Fuerza del almirante', 6, 0, 100, 2,'ulti'),     -- Buff completo (ataque y defensa +) 
-                    ('Dominio oceánico', 1, 320, 85, 1,'ulti'),             -- ultimate de control marítimo
+                    ('Dominio oceánico', 1, 320, 85, 1,'ulti'),             -- ultimate de control marítimo    --50
                     ('Invasión total', 3, 300, 80, 1,'ulti'),               -- ataque aéreo masivo
                     ('Sombra abisal', 4, 290, 90, 1,'ulti'),                -- ultimate submarino
                     ('Juicio orbital', 5, 350, 75, 1,'ulti'),               -- ultimate tecnológico
@@ -255,7 +255,7 @@ public class TablasBD {
                     ('Tormenta oceánica', 3, 280, 85, 1,'ulti'),               -- gran ataque de bombardeo
                     ('Tifón silencioso', 4, 260, 100, 1,'ulti'),               -- submarino especial
                     ('Impacto orbital', 5, 350, 70, 1,'ulti'),                 -- ultra tecnología
-                    ('Última esperanza', 1, 300, 95, 1,'ulti'),                -- solo si la vida es baja
+                    ('Última esperanza', 1, 300, 95, 1,'ulti'),                -- solo si la vida es baja                --58
                     ('Orden del almirante', 6, 0, 100, 1,'ulti'),              -- aumenta todas las estadísticas   
                     ('Milagro del astillero', 6, 0, 100, 1,'ulti'),            -- Una maniobra de soporte definitiva que activa todos los sistemas de reparación, recuperando completamente la vida del barco, restaurando todos los PP y eliminando cualquier estado negativo. Además, aumenta la defensa por 3 turnos.       
                     ('Torpedo nuclear',2,250,70,1,'ulti');                   --  u 234        62                   
@@ -328,39 +328,39 @@ public class TablasBD {
             String insertablaBarcoMovimiento = """
                        INSERT INTO Barco_Movimiento (id_barco, id_movimiento) VALUES
                                                 -- Barco 1
-                                                (1, 1), (1, 4), (1, 3),
-                                                (1, 31), (1, 32),
+                                                (1, 1), (1, 4), (1, 11),
+                                                (1, 27), (1, 46),
                                                 (1, 61),
                                                 
                                                 -- Barco 2
-                                                (2, 4), (2, 5), (2, 6),
-                                                (2, 33), (2, 34),
-                                                (2, 62),
+                                                (2, 1), (2, 2), (2, 20),
+                                                (2, 27), (2, 43),
+                                                (2, 47),
                                                 
                                                 -- Barco 3
-                                                (3, 7), (3, 8), (3, 9),
-                                                (3, 35), (3, 36),
-                                                (3, 63),
+                                                (3, 3), (3, 6), (3, 5),
+                                                (3, 37), (3, 45),
+                                                (3, 47),
                                                 
                                                 -- Barco 4
-                                                (4, 10), (4, 11), (4, 12),
-                                                (4, 37), (4, 38),
-                                                (4, 64),
+                                                (4, 1), (4, 5), (4, 19),
+                                                (4, 37), (4, 43),
+                                                (4, 47),
                                                 
                                                 -- Barco 5
-                                                (5, 13), (5, 14), (5, 15),
+                                                (5, 6), (5, 16), (5, 18),
                                                 (5, 39), (5, 40),
-                                                (5, 65),
+                                                (5, 52),
                                                 
                                                 -- Barco 6
                                                 (6, 16), (6, 17), (6, 18),
                                                 (6, 41), (6, 42),
-                                                (6, 66),
+                                                (6, 62),
                                                 
                                                 -- Barco 7
                                                 (7, 19), (7, 20), (7, 21),
                                                 (7, 43), (7, 44),
-                                                (7, 67),
+                                                (7, 52),
                                                 
                                                 -- Barco 8
                                                 (8, 22), (8, 23), (8, 24),
