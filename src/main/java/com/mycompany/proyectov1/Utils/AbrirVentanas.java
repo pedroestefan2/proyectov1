@@ -4,7 +4,6 @@
  */
 package com.mycompany.proyectov1.Utils;
 
-
 import com.mycompany.proyectov1.controllers.fxml.FXML_PrincipalController;
 import com.mycompany.proyectov1.controllers.fxml.FXML_PrincipalJugarController;
 import com.mycompany.proyectov1.interfaces.ControladorConUsuario;
@@ -27,11 +26,11 @@ import javafx.stage.StageStyle;
  */
 public class AbrirVentanas {
 
-    public static final String INICIO_APLICACION = "/fmxls/FXML_Start.fxml";
-    public static final String INICIO_PRINCIPAL = "/fmxls/FXML_Principal.fxml";
-    public static final String INICIO_PRINCIPAL_JUGAR = "/fmxls/FXML_PrincipalJugar.fxml";
-    public static final String INICIO_BATALLA_MAQUINA = "/fmxls/FXML_BattleMaquina.fxml";
-    public static final String INICIO_BATALLA_JUGADOR = "/fmxls/FXML_BattlePlayerl.fxml";
+    public static final String INICIO_APLICACION = "/fxmls/FXML_Start.fxml";
+    public static final String INICIO_PRINCIPAL = "/fxmls/FXML_Principal.fxml";
+    public static final String INICIO_PRINCIPAL_JUGAR = "/fxmls/FXML_PrincipalJugar.fxml";
+    public static final String INICIO_BATALLA_MAQUINA = "/fxmls/FXML_BattleMaquina.fxml";
+    public static final String INICIO_BATALLA_JUGADOR = "/fxmls/FXML_BattlePlayer.fxml";
     private static Stage stagePrincipal;
 
     public static void prueba() {
@@ -97,17 +96,53 @@ public class AbrirVentanas {
             if (controlador instanceof ControladorConUsuario) {
                 ((ControladorConUsuario) controlador).setUsuario(usuario);
             }
-
+            Scene nuevaScena=new Scene(root);
+            stage.setScene(nuevaScena);
             // Pasar el usuario
             //UsuarioPrincipalControlador.setUsuario(usuario);
             // Reemplazar el contenido del Scene con el nuevo FXML
-            stage.getScene().setRoot(root);
+           // stage.getScene().setRoot(root);
+           
             stage.sizeToScene();
+            stage.centerOnScreen();
+            stage.show();
 
         } catch (IOException ex) {
             Logger.getLogger(AbrirVentanas.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
+    
+    public static void abrirNuevaVentana(Usuario usuario, String rutaFXML) {
+    try {
+        FXMLLoader loader = new FXMLLoader(AbrirVentanas.class.getResource(rutaFXML));
+        Parent root = loader.load();
+
+        // Obtener controlador y pasar usuario si aplica
+        Object controlador = loader.getController();
+        if (controlador instanceof ControladorConUsuario) {
+            ((ControladorConUsuario) controlador).setUsuario(usuario);
+        }
+
+        Scene scene = new Scene(root);
+
+        Stage stage = new Stage();
+        stage.setScene(scene);
+
+        // Ajustar tamaño al contenido
+        stage.sizeToScene();
+        stage.setResizable(true);
+
+        // Centrar la ventana en pantalla
+        stage.centerOnScreen();
+
+        // Mostrar la ventana
+        stage.show();
+
+    } catch (IOException ex) {
+        Logger.getLogger(AbrirVentanas.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
+
 
 }

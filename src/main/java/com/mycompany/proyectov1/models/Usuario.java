@@ -26,15 +26,10 @@ public class Usuario {
     private int oro;
     private int hierro;
     private int suministros;
-    
-    
+
     //lista de barcos y lista en su mazo
-    ArrayList <Barco> listabarcos = new ArrayList<>();
-    ArrayList <Barco> listabarcosMazo = new ArrayList<>();
-
-  
-
-    
+    ArrayList<Barco> listabarcos = new ArrayList<>();
+    ArrayList<Barco> listabarcosMazo = new ArrayList<>();
 
     public Usuario() {
     }
@@ -46,6 +41,20 @@ public class Usuario {
         this.telefono = telefono;
         this.correo = correo;
         this.contraseña = contraseña;// cofificar contraseña futuro con BCrypt
+    }
+
+    public Usuario(int id, String nombreUsuario, String nombre, String apellidos, String telefono, String correo, String contraseña, String imagen, int oro, int hierro, int suministros) {
+        this.id = id;
+        this.nombreUsuario = nombreUsuario;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.contraseña = contraseña;
+        this.imagen = imagen;
+        this.oro = oro;
+        this.hierro = hierro;
+        this.suministros = suministros;
     }
 
     public int getId() {
@@ -135,53 +144,51 @@ public class Usuario {
     public void setSuministros(int suministros) {
         this.suministros = suministros;
     }
-    
-    
-    
+
     //barcos añadir quitar y lime de 3 barcos por usuario
-    
     public ArrayList<Barco> getListabarcos() {
         return listabarcos;
     }
 
     public void setListabarcos(ArrayList<Barco> listabarcos) {
-       
+
         this.listabarcos = listabarcos;
-        
+
     }
-    
-    public void eliminarBarco(Barco barco){
-        for(Barco b:this.listabarcos){
-            if(b.getId()==barco.getId()){
-               this.listabarcos.remove(b);
+
+    public void eliminarBarco(Barco barco) {
+        for (Barco b : this.listabarcos) {
+            if (b.getId() == barco.getId()) {
+                this.listabarcos.remove(b);
             }
         }
     }
-    
-    public void añadirBarco(Barco barco){
+
+    public void añadirBarco(Barco barco) {
         this.listabarcos.add(barco);
     }
-    
-     public ArrayList<Barco> getListabarcosMazo() {
+
+    public ArrayList<Barco> getListabarcosMazo() {
         return listabarcosMazo;
     }
 
     public void setListabarcosMazo(ArrayList<Barco> listabarcosMazo) {
-        if(listabarcos.size()<3){
+
         this.listabarcos = listabarcos;
-        }
+
     }
-    public void eliminarBarcoMazo(Barco barco){
-        for(Barco b:this.listabarcos){
-            if(b.getId()==barco.getId()){
-               this.listabarcos.remove(b);
+
+    public void eliminarBarcoMazo(Barco barco) {
+        for (Barco b : this.listabarcos) {
+            if (b.getId() == barco.getId()) {
+                this.listabarcos.remove(b);
             }
         }
     }
-    
-    public void añadirBarcoMazo(Barco barco){
-        if(listabarcos.size()<3){
-        this.listabarcos.add(barco);
+
+    public void añadirBarcoMazo(Barco barco) {
+        if (listabarcos.size() < 3) {
+            this.listabarcos.add(barco);
         }
     }
 

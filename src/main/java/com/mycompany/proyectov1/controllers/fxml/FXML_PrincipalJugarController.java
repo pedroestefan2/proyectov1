@@ -21,7 +21,7 @@ import javafx.stage.Stage;
  *
  * @author pedro
  */
-public class FXML_PrincipalJugarController implements Initializable,ControladorConUsuario {
+public class FXML_PrincipalJugarController implements Initializable, ControladorConUsuario {
 
     private Usuario usuarioPrincipal;
 
@@ -35,26 +35,28 @@ public class FXML_PrincipalJugarController implements Initializable,ControladorC
     @FXML
     private Label UsernamePrincipal;
 
-    @FXML 
-    public  void CargarInicio(ActionEvent event) {
+    @FXML
+    public void CargarInicio(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        AbrirVentanas.cambiarVentana(usuarioPrincipal,AbrirVentanas.INICIO_PRINCIPAL, stage);
+        AbrirVentanas.cambiarVentana(usuarioPrincipal, AbrirVentanas.INICIO_PRINCIPAL, stage);
+        AbrirVentanas.abrirNuevaVentana(usuarioPrincipal, AbrirVentanas.INICIO_PRINCIPAL);
+
     }
 
     @FXML
-    public  void CargarBattlePaneMaquina(ActionEvent event) {
+    public void CargarBattlePaneMaquina(ActionEvent event) {
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        AbrirVentanas.cambiarVentana(AbrirVentanas.INICIO_BATALLA_MAQUINA, stage);
+        AbrirVentanas.cambiarVentana(usuarioPrincipal, AbrirVentanas.INICIO_BATALLA_MAQUINA, stage);
 
     }
 
     @Override
     public void setUsuario(Usuario usuario) {
-       this.usuarioPrincipal=usuario;
+        this.usuarioPrincipal = usuario;
         if (usuario != null && UsernamePrincipal != null) {
-        UsernamePrincipal.setText(usuario.getNombreUsuario());
-    }
+            UsernamePrincipal.setText(usuario.getNombreUsuario());
+        }
     }
 
 }

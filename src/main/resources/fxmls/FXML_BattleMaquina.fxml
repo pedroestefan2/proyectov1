@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="880.0" prefWidth="1320.0" style="-fx-background-color: #4A90E2;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectov1.controllers.fxml.FXML_BattleMaquinaController">
+   <children>
+      <Pane layoutY="680.0" prefHeight="200.0" prefWidth="1320.0" style="-fx-background-color: #34495e;">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="571.0">
+               <children>
+                  <Label fx:id="lbDatosCombate" prefHeight="81.0" prefWidth="433.0" style="-fx-background-color: white;" text=" infor durante el combate" textFill="#f20000" wrapText="true">
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Button fx:id="btnAtaque1" layoutX="700.0" layoutY="41.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" text="ataque 1" />
+            <Button fx:id="btnAtaque3" layoutX="700.0" layoutY="107.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" text="ataque 3" />
+            <Button fx:id="btnAtaque2" layoutX="925.0" layoutY="41.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" text="ataque 2" />
+            <Button fx:id="btnAtaque4" layoutX="925.0" layoutY="107.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" text="ataque 4" />
+         </children>
+      </Pane>
+      <StackPane prefHeight="679.0" prefWidth="1320.0">
+         <children>
+            <Pane fx:id="PaneJuego" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Pane fx:id="datosenemigo" layoutX="956.0" prefHeight="81.0" prefWidth="364.0" style="-fx-background-color: #1B263B;">
+                     <children>
+                        <Label fx:id="lbUsuario2" layoutX="112.0" layoutY="14.0" text="Enemigo username" textFill="#e0e1dd">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbUsuario2Vida" layoutX="168.0" layoutY="48.0" text="Salud : 100" textFill="#e0e1dd" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="seleccionarBarco" layoutX="938.0" layoutY="591.0" prefHeight="88.0" prefWidth="382.0" style="-fx-background-color: #1B263B;">
+                     <children>
+                        <Button fx:id="btnBarco1" layoutX="44.0" layoutY="31.0" mnemonicParsing="false" onAction="#CambiarBarcoSelecionado" text="Barco1" />
+                        <Button fx:id="btnBarco2" layoutX="171.0" layoutY="31.0" mnemonicParsing="false" onAction="#CambiarBarcoSelecionado" text="Barco2" />
+                        <Button fx:id="btnBarco3" layoutX="287.0" layoutY="31.0" mnemonicParsing="false" onAction="#CambiarBarcoSelecionado" text="Barco3" />
+                     </children></Pane>
+                  <Pane fx:id="datosjugador" layoutY="605.0" prefHeight="81.0" prefWidth="364.0" style="-fx-background-color: #1B263B;">
+                     <children>
+                        <Label fx:id="lbUsuario1" layoutX="112.0" layoutY="14.0" text="username" textFill="#e0e1dd">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbUsuario1Vida" layoutX="168.0" layoutY="48.0" text="Salud : 100" textFill="#e0e1dd" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="barcoSeleccionado" layoutX="82.0" layoutY="340.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1B263B;">
+                     <children>
+                        <ImageView fx:id="imgBarco1" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/imagenporDefecto.png" />
+                           </image>
+                        </ImageView>
+                     </children></Pane>
+                  <Pane fx:id="barcoSeleccionadoEnemigo" layoutX="619.0" layoutY="116.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1B263B;">
+                     <children>
+                        <ImageView fx:id="imgBarco2" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/imagenporDefecto.png" />
+                           </image>
+                        </ImageView>
+                     </children></Pane>
+                  <Label fx:id="lbContador" layoutY="1.0" text="Contador : 30" textFill="RED">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

@@ -118,9 +118,7 @@ public class TablasBD {
                    perdedor TEXT                 
                   );
                """;
-
-            
-
+            System.out.println("Ejecutando SQL: " + "tablaUsuario");
             stm.execute(tablaUsuario);
             stm.execute(tablaBarcos);
             stm.execute(tablaUsuarioBarco);
@@ -128,8 +126,9 @@ public class TablasBD {
             stm.execute(tablaMovimientos);
             stm.execute(tablaEfectividadMovimiento);
             stm.execute(tablaBarcoMovimiento);
+            System.out.println("Ejecutando SQL: " + "tablaBatallas");
+
             stm.execute(tablaBatallas);
-           
 
 //            agregamos usuarios admin y maquina
             String insertUsuarios = """
@@ -220,7 +219,7 @@ public class TablasBD {
                    ('Reparación ligera', 6, 0, 100, 15,'normal'),         -- Recupera 25% de vida
                    ('Reparación media', 6, 0, 100, 10,'normal'),          -- Recupera 50% de vida --24
                                          
-                   - Movimientos especiales
+                   -- Movimientos especiales
                    ('Furia del Yamato', 1, 220, 90, 4,'especial'),         -- solo Yamato   --25
                    ('Misil Tomahawk', 5, 200, 85, 3,'especial'),          -- solo EE.UU.
                    ('Cañones triples', 1, 180, 85, 5,'especial'),         -- solo Bismarck/Tirpitz
@@ -297,14 +296,14 @@ public class TablasBD {
                     ('USS Gato', 1, 585, 230, 170, 'submarino', '/images/imagenporDefecto.png'),
                     ('USS Atlanta', 1, 1100, 310, 260, 'crucero', '/images/imagenporDefecto.png'),   --27            
                                    
-                    ('HMS Hood', 1, 1300, 360, 280, 'crucero_batalla', '/images/imagenporDefecto.png'),
+                    ('HMS Hood', 1, 1300, 360, 280, 'crucero', '/images/imagenporDefecto.png'),
                     ('HMS King George V', 1, 1050, 390, 340, 'acorazado', '/images/imagenporDefecto.png'),
                     ('HMS Ark Royal', 1, 1090, 230, 210, 'portaaviones', '/images/imagenporDefecto.png'),
                     ('HMS Prince of Wales', 1, 1430, 420, 340, 'acorazado', '/images/imagenporDefecto.png'),
                     ('HMS Rodney', 1, 1450, 410, 350, 'acorazado', '/images/imagenporDefecto.png'),
                     ('HMS Warspite', 1, 1400, 370, 320, 'acorazado', '/images/imagenporDefecto.png'),
                     ('HMS Belfast', 1, 1230, 320, 260, 'crucero', '/images/imagenporDefecto.png'),
-                    ('HMS Illustrious', 1, 1080, 240, 210, 'portaaviones', '/images/imagenporDefecto.png')--35               
+                    ('HMS Illustrious', 1, 1080, 240, 210, 'portaaviones', '/images/imagenporDefecto.png'),--35               
                                    
                     ('Roma', 1, 1380, 370, 320, 'acorazado', '/images/imagenporDefecto.png'),
                     ('Vittorio Veneto', 1, 1330, 380, 310, 'acorazado', '/images/imagenporDefecto.png'),
@@ -368,183 +367,234 @@ public class TablasBD {
                                                 (8, 39), (8, 41),
                                                 (8, 55),
                                                 
-                                                -- Barco 9
-                                                (9, 25), (9, 26), (9, 27),
-                                                (9, 47), (9, 48),
-                                                (9, 69),
+                                                -- Barco 9 jap
+                                                (9, 1), (9, 5), (9, 14),
+                                                (9, 25), (9, 31),
+                                                (9, 49),
                                                 
                                                 -- Barco 10
-                                                (10, 28), (10, 29), (10, 30),
-                                                (10, 49), (10, 50),
-                                                (10, 70),
+                                                (10, 15), (10, 2), (10, 15),
+                                                (10, 31), (10, 46),
+                                                (10, 60),
                                                 
-                                                -- Barco 11 (normal ciclo vuelve a 1)
-                                                (11, 1), (11, 2), (11, 3),
-                                                (11, 31), (11, 32),
-                                                (11, 61),
+                                                -- Barco 11 
+                                                (11, 22), (11, 19), (11, 8),
+                                                (11, 30), (11, 33),
+                                                (11, 55),
                                                 
                                                 -- Barco 12
-                                                (12, 4), (12, 5), (12, 6),
-                                                (12, 33), (12, 34),
-                                                (12, 62),
+                                                (12, 8), (12, 9), (12, 18),
+                                                (12, 39), (12, 33),
+                                                (12, 51),
                                                 
                                                 -- Barco 13
-                                                (13, 7), (13, 8), (13, 9),
-                                                (13, 35), (13, 36),
-                                                (13, 63),
+                                                (13, 22), (13, 8), (13, 9),
+                                                (13, 30), (13, 33),
+                                                (13, 55),
                                                 
                                                 -- Barco 14
-                                                (14, 10), (14, 11), (14, 12),
-                                                (14, 37), (14, 38),
-                                                (14, 64),
+                                                (14, 9), (14, 8), (14, 19),
+                                                (14, 30), (14, 33),
+                                                (14, 51),
                                                 
                                                 -- Barco 15
-                                                (15, 13), (15, 14), (15, 15),
-                                                (15, 39), (15, 40),
-                                                (15, 65),
+                                                (15, 7), (15, 16), (15, 23),
+                                                (15, 39), (15, 28),
+                                                (15, 55),
                                                 
                                                 -- Barco 16
-                                                (16, 16), (16, 17), (16, 18),
-                                                (16, 41), (16, 42),
-                                                (16, 66),
+                                                (16, 1), (16, 6), (16, 3),
+                                                (16, 40), (16, 36),
+                                                (16, 50),
                                                 
-                                                -- Barco 17
-                                                (17, 19), (17, 20), (17, 21),
-                                                (17, 43), (17, 44),
-                                                (17, 67),
+                                                -- Barco 17   amer
+                                                (17, 2), (17, 3), (17, 5),
+                                                (17, 45), (17, 26),
+                                                (17, 54),
                                                 
                                                 -- Barco 18
                                                 (18, 22), (18, 23), (18, 24),
-                                                (18, 45), (18, 46),
-                                                (18, 68),
+                                                (18, 30), (18, 39),
+                                                (18, 51),
                                                 
                                                 -- Barco 19
-                                                (19, 25), (19, 26), (19, 27),
-                                                (19, 47), (19, 48),
-                                                (19, 69),
+                                                (19, 2), (19, 1), (19, 15),
+                                                (19, 31), (19, 37),
+                                                (19, 47),
                                                 
                                                 -- Barco 20
-                                                (20, 28), (20, 29), (20, 30),
-                                                (20, 49), (20, 50),
-                                                (20, 70),
+                                                (20, 2), (20, 3), (20, 4),
+                                                (20, 26), (20, 37),
+                                                (20, 48),
                                                 
                                                 -- Barco 21
-                                                (21, 1), (21, 2), (21, 3),
-                                                (21, 31), (21, 32),
-                                                (21, 61),
+                                                (21, 6), (21, 7), (21, 17),
+                                                (21, 31), (21, 28),
+                                                (21, 52),
                                                 
                                                 -- Barco 22
                                                 (22, 4), (22, 5), (22, 6),
-                                                (22, 33), (22, 34),
-                                                (22, 62),
+                                                (22, 31), (22, 37),
+                                                (22, 47),
                                                 
                                                 -- Barco 23
                                                 (23, 7), (23, 8), (23, 9),
-                                                (23, 35), (23, 36),
-                                                (23, 63),
+                                                (23, 31), (23, 36),
+                                                (23, 47),
                                                 
                                                 -- Barco 24
-                                                (24, 10), (24, 11), (24, 12),
-                                                (24, 37), (24, 38),
-                                                (24, 64),
+                                                (24, 9), (24, 8), (24, 18),
+                                                (24, 39), (24, 30),
+                                                (24, 55),
                                                 
                                                 -- Barco 25
-                                                (25, 13), (25, 14), (25, 15),
-                                                (25, 39), (25, 40),
-                                                (25, 65),
+                                                (25, 9), (25, 8), (25, 18),
+                                                (25, 39), (25, 30),
+                                                (25, 51),
                                                 
                                                 -- Barco 26
-                                                (26, 16), (26, 17), (26, 18),
-                                                (26, 41), (26, 42),
-                                                (26, 66),
+                                                (26, 16), (26, 17), (26, 6),
+                                                (26, 28), (26, 32),
+                                                (26, 52),
                                                 
                                                 -- Barco 27
-                                                (27, 19), (27, 20), (27, 21),
-                                                (27, 43), (27, 44),
-                                                (27, 67),
+                                                (27, 1), (27, 2), (27, 7),
+                                                (27, 41), (27, 37),
+                                                (27, 48),
                                                 
-                                                -- Barco 28
-                                                (28, 22), (28, 23), (28, 24),
-                                                (28, 45), (28, 46),
-                                                (28, 68),
+                                                -- Barco 28  ing
+                                                (28, 1), (28, 10), (28, 20),
+                                                (28, 29), (28, 36),
+                                                (28, 53),
                                                 
                                                 -- Barco 29
-                                                (29, 25), (29, 26), (29, 27),
-                                                (29, 47), (29, 48),
-                                                (29, 69),
+                                                (29, 2), (29, 3), (29, 4),
+                                                (29, 31), (29, 35),
+                                                (29, 47),
                                                 
                                                 -- Barco 30
-                                                (30, 28), (30, 29), (30, 30),
-                                                (30, 49), (30, 50),
-                                                (30, 70),
+                                                (30, 9), (30, 8), (30, 18),
+                                                (30, 30), (30, 46),
+                                                (30, 51),
                                                 
                                                 -- Barco 31
                                                 (31, 1), (31, 2), (31, 3),
-                                                (31, 31), (31, 32),
-                                                (31, 61),
+                                                (31, 29), (31, 37),
+                                                (31, 47),
                                                 
                                                 -- Barco 32
-                                                (32, 4), (32, 5), (32, 6),
-                                                (32, 33), (32, 34),
-                                                (32, 62),
+                                                (32, 4), (32, 5), (32, 15),
+                                                (32, 29), (32, 31),
+                                                (32, 47),
                                                 
                                                 -- Barco 33
-                                                (33, 7), (33, 8), (33, 9),
-                                                (33, 35), (33, 36),
-                                                (33, 63),
+                                                (33, 2), (33, 5), (33, 1),
+                                                (33, 29), (33, 31),
+                                                (33, 47),
                                                 
                                                 -- Barco 34
                                                 (34, 10), (34, 11), (34, 12),
-                                                (34, 37), (34, 38),
-                                                (34, 64),
+                                                (34, 29), (34, 36),
+                                                (34, 49),
                                                 
                                                 -- Barco 35
                                                 (35, 13), (35, 14), (35, 15),
-                                                (35, 39), (35, 40),
-                                                (35, 65),
+                                                (35, 29), (35, 39),
+                                                (35, 51),
                                                 
-                                                -- Barco 36
-                                                (36, 16), (36, 17), (36, 18),
-                                                (36, 41), (36, 42),
-                                                (36, 66),
+                                                -- Barco 36  ita
+                                                (36, 1), (36, 4), (36, 5),
+                                                (36, 31), (36, 46),
+                                                (36, 47),
                                                 
                                                 -- Barco 37
-                                                (37, 19), (37, 20), (37, 21),
-                                                (37, 43), (37, 44),
-                                                (37, 67),
+                                                (37, 15), (37, 2), (37, 3),
+                                                (37, 31), (37, 36),
+                                                (37, 47),
                                                 
-                                                -- Barco 38
+                                                -- Barco 38  fran
                                                 (38, 22), (38, 23), (38, 24),
                                                 (38, 45), (38, 46),
-                                                (38, 68),
+                                                (38, 47),
                                                 
                                                 -- Barco 39
                                                 (39, 25), (39, 26), (39, 27),
                                                 (39, 47), (39, 48),
-                                                (39, 69),
+                                                (39, 47),
                                                 
-                                                -- Barco 40
-                                                (40, 28), (40, 29), (40, 30),
-                                                (40, 49), (40, 50),
-                                                (40, 70),
+                                                -- Barco 40  esp
+                                                (40, 1), (40, 2), (40, 3),
+                                                (40, 31), (40, 37),
+                                                (40, 47),
                                                 
                                                 -- Barco 41
-                                                (41, 1), (41, 2), (41, 3),
+                                                (41, 1), (41, 3), (41, 7),
                                                 (41, 31), (41, 32),
-                                                (41, 61),
+                                                (41, 47),
                                                 
                                                 -- Barco 42
-                                                (42, 4), (42, 5), (42, 6),
-                                                (42, 33), (42, 34),
-                                                (42, 62),
-                                                
+                                                (42, 1), (42, 5), (42, 24),
+                                                (42, 45), (42, 40),
+                                                (42, 47),
                                                 -- Barco 43
-                                                (43, 7), (43, 8), (43, 9),
-                                                (43, 35), (43, 36),
-                                                (43, 63);                         
+                                                 (43, 1), (43, 12), (43, 19),
+                                                 (43, 35), (43, 36),
+                                                 (43, 49),
+                                                -- Barco 44
+                                                (43, 1), (43, 2), (43, 20),
+                                                (43, 31), (43, 37),
+                                                (43, 47), 
+                                                -- Barco 45  rusos
+                                                 (40, 6), (40, 16), (40, 18),
+                                                (40, 34), (40, 35),
+                                                 (40, 52),
+                                                                                                
+                                                 -- Barco 46
+                                                (41, 3), (41, 6), (41, 5),
+                                                (41, 37), (41, 45),
+                                                (41, 47),
+                                                                                                
+                                                -- Barco 47
+                                                 (42, 1), (42, 2), (42, 3),
+                                               (42, 45), (42, 37),
+                                                (42, 47),
+                                              -- Barco 48
+                                                 (43, 1), (43, 2), (43, 3),
+                                                 (43, 35), (43, 36),
+                                                 (43, 47),
+                                                -- Barco 49
+                                                (43, 1), (43, 2), (43, 6),
+                                                (43, 31), (43, 37),
+                                                (43, 47), 
+                                               -- Barco 50
+                                               (43, 1), (43, 12), (43, 19),
+                                              (43, 35), (43, 36),
+                                                (43, 49);
                                                 """;
 
+            String insertUsuarioBarco = """
+                             INSERT INTO Usuario_Barco (id_usuario, id_barco, nivel, es_en_mazo) VALUES
+                               (1, 1, 1, TRUE),
+                               (1, 2, 1, TRUE),
+                               (1, 3, 1, TRUE),                        
+                               (2, 1, 1, TRUE),
+                               (2, 2, 1, TRUE),
+                               (2, 3, 1, TRUE);
+                               """;
+            System.out.println("Ejecutando SQL: " + "insertUsuarios");
             stm.executeUpdate(insertUsuarios);
+            System.out.println("Ejecutando SQL: " + "insertarTipos_movimiento");
+            stm.executeUpdate(insertarTipos_movimiento);
+            System.out.println("Ejecutando SQL: " + "insertEfectividad_movimiento");
+            stm.executeUpdate(insertEfectividad_movimiento);
+            System.out.println("Ejecutando SQL: " + "insertarMovimientos");
+            stm.executeUpdate(insertarMovimientos);
+            System.out.println("Ejecutando SQL: " + "insertarBarcos");
+            stm.executeUpdate(insertarBarcos);
+            System.out.println("Ejecutando SQL: " + "insertablaBarcoMovimiento");
+            stm.executeUpdate(insertablaBarcoMovimiento);
+            System.out.println("Ejecutando SQL: " + "insertUsuarioBarco");
+            stm.executeUpdate(insertUsuarioBarco);
             System.out.println("Tabla creada");
         } catch (SQLException ex) {
             System.err.println("Error a crear la tabla:" + ex.getMessage());

@@ -20,6 +20,7 @@ public class Main extends Application {
 
         //AbrirVentanas.prueba();
         AbrirVentanas.abrirAplicacion();
+     //  AbrirVentanas.prueba();
         ConectarBD.ConectarDB();
     }
 
