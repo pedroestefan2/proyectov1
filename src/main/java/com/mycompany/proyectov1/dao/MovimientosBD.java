@@ -22,7 +22,9 @@ import java.util.logging.Logger;
 public class MovimientosBD {
     
     public static ArrayList<Movimiento> CargarMovimientos(Barco barco){
-        String consulta="SELECT * FROM Movimientos WHERE id_barco=?";
+  
+            
+        String consulta="SELECT Movimientos.*FROM Movimientos INNER JOIN Barco_Movimiento ON Movimientos.id = Barco_Movimiento.id_movimiento WHERE Barco_Movimiento.id_barco = ?";
         ArrayList<Movimiento> lista= new ArrayList<>();
         
         try(Connection conexion=ConectarBD.ConectarDB();
@@ -30,7 +32,7 @@ public class MovimientosBD {
             st.setInt(1, barco.getId());
             
             try(ResultSet rs=st.executeQuery()){
-                if(rs.next()){
+                while(rs.next()){
                     Movimiento mov=new Movimiento();
                     mov.setId(rs.getInt("id"));
                     mov.setNombre(rs.getString("nombre"));
@@ -46,10 +48,13 @@ public class MovimientosBD {
             return lista;
             
         } catch (SQLException ex) {
+            System.out.println("rr CargarMOvi");
+                    
             Logger.getLogger(MovimientosBD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         
-        return null;
+        
         
     }
     

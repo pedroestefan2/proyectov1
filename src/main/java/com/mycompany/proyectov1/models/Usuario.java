@@ -174,21 +174,21 @@ public class Usuario {
 
     public void setListabarcosMazo(ArrayList<Barco> listabarcosMazo) {
 
-        this.listabarcos = listabarcos;
+        this.listabarcosMazo = listabarcos;
 
     }
 
     public void eliminarBarcoMazo(Barco barco) {
-        for (Barco b : this.listabarcos) {
+        for (Barco b : this.listabarcosMazo) {
             if (b.getId() == barco.getId()) {
-                this.listabarcos.remove(b);
+                this.listabarcosMazo.remove(b);
             }
         }
     }
 
     public void añadirBarcoMazo(Barco barco) {
-        if (listabarcos.size() < 3) {
-            this.listabarcos.add(barco);
+        if (listabarcosMazo.size() < 3) {
+            this.listabarcosMazo.add(barco);
         }
     }
 

@@ -119,7 +119,7 @@ public class ComprobarUsuarioBD {
         return null;
 
     }
-    
+
     public static Usuario BuscarUsuarioMazoNombre(String nombreUsuario) {
         String consulta = "SELECT * FROM Usuario WHERE nombreusuario = ?";
 
@@ -129,24 +129,23 @@ public class ComprobarUsuarioBD {
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
                     int id = rs.getInt("id");
-                String nombre = rs.getString("nombre");
-                String apellidos = rs.getString("apellidos");
-                String telefono = rs.getString("telefono");
-                String correo = rs.getString("correo");
-                String contraseña = rs.getString("contraseña");
-                String imagen = rs.getString("imagen");
-                int oro = rs.getInt("oro");
-                int hierro = rs.getInt("hierro");
-                int suministros = rs.getInt("suministros");
+                    String nombre = rs.getString("nombre");
+                    String apellidos = rs.getString("apellidos");
+                    String telefono = rs.getString("telefono");
+                    String correo = rs.getString("correo");
+                    String contraseña = rs.getString("contraseña");
+                    String imagen = rs.getString("imagen");
+                    int oro = rs.getInt("oro");
+                    int hierro = rs.getInt("hierro");
+                    int suministros = rs.getInt("suministros");
 
-                
-                
-                ArrayList<Barco> barcosEnMazo = ComprobarBarcoBD.BuscarBarcosMazoIdBD(id);
-                Usuario usuario = new Usuario(id, nombreUsuario, nombre, apellidos, telefono, correo, contraseña, imagen, oro, hierro, suministros);
-         
-                
-                usuario.setListabarcosMazo(barcosEnMazo);
-                return usuario;
+                    ArrayList<Barco> barcosEnMazo = ComprobarBarcoBD.BuscarBarcosMazoIdBD(id);
+                    Usuario usuario = new Usuario(id, nombreUsuario, nombre, apellidos, telefono, correo, contraseña, imagen, oro, hierro, suministros);
+                    for (Barco b : barcosEnMazo) {
+                        System.out.println(id + "---Barco encontrado en mazo: " + b.getNombre());
+                    }
+                    usuario.setListabarcosMazo(barcosEnMazo);
+                    return usuario;
 
                 }
 
@@ -160,7 +159,6 @@ public class ComprobarUsuarioBD {
         return null;
     }
 
-
     public static Usuario BuscarUsuarioCompletoNombre(String nombreUsuario) {
         String consulta = "SELECT * FROM Usuario WHERE nombreusuario = ?";
 
@@ -170,24 +168,25 @@ public class ComprobarUsuarioBD {
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
                     int id = rs.getInt("id");
-                String nombre = rs.getString("nombre");
-                String apellidos = rs.getString("apellidos");
-                String telefono = rs.getString("telefono");
-                String correo = rs.getString("correo");
-                String contraseña = rs.getString("contraseña");
-                String imagen = rs.getString("imagen");
-                int oro = rs.getInt("oro");
-                int hierro = rs.getInt("hierro");
-                int suministros = rs.getInt("suministros");
+                    String nombre = rs.getString("nombre");
+                    String apellidos = rs.getString("apellidos");
+                    String telefono = rs.getString("telefono");
+                    String correo = rs.getString("correo");
+                    String contraseña = rs.getString("contraseña");
+                    String imagen = rs.getString("imagen");
+                    int oro = rs.getInt("oro");
+                    int hierro = rs.getInt("hierro");
+                    int suministros = rs.getInt("suministros");
 
-                
-                ArrayList<Barco> barcosTotales = ComprobarBarcoBD.BuscarBarcosUsuarioIdBD(id);
-                ArrayList<Barco> barcosEnMazo = ComprobarBarcoBD.BuscarBarcosMazoIdBD(id);
-                Usuario usuario = new Usuario(id, nombreUsuario, nombre, apellidos, telefono, correo, contraseña, imagen, oro, hierro, suministros);
-         
-                usuario.setListabarcos(barcosTotales);
-                usuario.setListabarcosMazo(barcosEnMazo);
-                return usuario;
+                    ArrayList<Barco> barcosTotales = ComprobarBarcoBD.BuscarBarcosUsuarioIdBD(id);
+                    ArrayList<Barco> barcosEnMazo = ComprobarBarcoBD.BuscarBarcosMazoIdBD(id);
+                    Usuario usuario = new Usuario(id, nombreUsuario, nombre, apellidos, telefono, correo, contraseña, imagen, oro, hierro, suministros);
+                    for (Barco b : barcosEnMazo) {
+                        System.out.println(id + "**---Barco encontrado en mazo: " + b.getNombre());
+                    }
+                    usuario.setListabarcos(barcosTotales);
+                    usuario.setListabarcosMazo(barcosEnMazo);
+                    return usuario;
 
                 }
 

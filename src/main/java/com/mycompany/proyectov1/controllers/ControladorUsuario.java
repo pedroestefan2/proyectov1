@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyectov1.controllers;
 
+import com.mycompany.proyectov1.dao.ComprobarBarcoBD;
 import com.mycompany.proyectov1.dao.MovimientosBD;
 import com.mycompany.proyectov1.models.Barco;
 import com.mycompany.proyectov1.models.Movimiento;
@@ -19,13 +20,17 @@ public class ControladorUsuario {
     private int id;
     private String nombre;
     private ArrayList<EstadoBarcoBatalla> listabarcos = new ArrayList<>();
+    private EstadoBarcoBatalla barcoSeleccionado;
 
     public ControladorUsuario(Usuario usuario) {
         this.id = usuario.getId();
         this.nombre = usuario.getNombreUsuario();
-        for (Barco b : usuario.getListabarcosMazo()) {
+        for (Barco b : ComprobarBarcoBD.BuscarBarcosMazoIdBD(id)) {
+            System.out.println(usuario.getNombreUsuario()+"---rrrr"+b.getNombre());
             listabarcos.add(new EstadoBarcoBatalla(b));// no hace falta comprobar creo
         }
+        
+        this.barcoSeleccionado=this.getPrimerVivo();
     }
 
     public int getId() {
@@ -48,6 +53,16 @@ public class ControladorUsuario {
         }
         return null;
     }
+
+    public EstadoBarcoBatalla getBarcoSeleccionado() {
+        return barcoSeleccionado;
+    }
+
+    public void setBarcoSeleccionado(EstadoBarcoBatalla barcoSeleccionado) {
+        this.barcoSeleccionado = barcoSeleccionado;
+    }
+    
+    
 
     public ArrayList<EstadoBarcoBatalla> getEstanvivos() {
         ArrayList<EstadoBarcoBatalla> listabarcosVivos = new ArrayList<>();

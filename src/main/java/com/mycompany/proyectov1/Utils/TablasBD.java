@@ -265,8 +265,8 @@ public class TablasBD {
 //            insertamos los barcos *añdir barcos especiales futuro
             String insertarBarcos = """
                     INSERT INTO Barcos(nombre, nivel, vida, ataque, defensa, tipo, imagen) VALUES 
-                    ('Bismarck',1,2000,450,520,'acorazado','/images/imagenporDefecto.png'),  
-                    ('Tirpitz',1,1900,380,600,'acorazado','/images/imagenporDefecto.png'), 
+                    ('Bismarck',1,2000,450,520,'acorazado','/images/imagenesBarcos/Bismark.png'),  
+                    ('Tirpitz',1,1900,380,600,'acorazado','/images/imagenesBarcos/Tirpitz.png'), 
                     ('Gneisenau', 1, 1300, 360, 300, 'acorazado', '/images/imagenporDefecto.png'),
                     ('Scharnhorst', 1, 1300, 360, 320, 'acorazado', '/images/imagenporDefecto.png'),
                     ('U-47', 1, 520, 220, 140, 'submarino', '/images/imagenporDefecto.png'),

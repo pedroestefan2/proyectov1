@@ -54,6 +54,7 @@ public class ComprobarBarcoBD {
             return null;
         }
     }
+
     public static ArrayList<Barco> BuscarBarcosUsuarioIdBD(int usuarioID) {
         String consulta = "Select Barcos.* From Usuario_Barco JOIN Barcos on id_usuario=id_usuario WHERE id_usuario=?";
         ArrayList<Barco> listabarcos = new ArrayList<>();
@@ -61,7 +62,7 @@ public class ComprobarBarcoBD {
             st.setInt(1, usuarioID);
 
             try (ResultSet rs = st.executeQuery()) {
-                if (rs.next()) {
+                while (rs.next()) {
                     Barco barco = new Barco();
                     barco.setId(rs.getInt("id"));
                     barco.setNombre(rs.getString("nombre"));
@@ -81,6 +82,7 @@ public class ComprobarBarcoBD {
             return null;
         }
     }
+
     public static boolean CambiarBarcosMazoIABD(Usuario usuario, ArrayList<Barco> seleccionFianal) {// sellecion son 3 barcos
         String consulta = "UPDATE Usuario_Barco SET es_en_mazo=TRUE WHERE id_usuario=? AND id_barco IN (?,?,?)";
         try (Connection conexion = ConectarBD.ConectarDB(); PreparedStatement st = conexion.prepareStatement(consulta)) {
@@ -88,15 +90,13 @@ public class ComprobarBarcoBD {
             st.setInt(2, seleccionFianal.get(1).getId());
             st.setInt(3, seleccionFianal.get(2).getId());
             st.setInt(4, seleccionFianal.get(3).getId());
-            
-            int filactualizadas=st.executeUpdate();
-            return filactualizadas==3;
+
+            int filactualizadas = st.executeUpdate();
+            return filactualizadas == 3;
         } catch (SQLException ex) {
             Logger.getLogger(ComprobarBarcoBD.class.getName()).log(Level.SEVERE, null, ex);
-             return false;
+            return false;
         }
-
-       
 
     }
 
@@ -129,15 +129,15 @@ public class ComprobarBarcoBD {
         return null;
 
     }
-    
-       public static ArrayList<Barco> BuscarBarcosMazoIdBD(int usuarioID) {
-        String consulta = "SELECT Barcos.* FROM Usuario_Barco JOIN Barcos ON id_usuario=id_usuario WHERE id_usuario=? AND es_en_mazo=TRUE";
+
+    public static ArrayList<Barco> BuscarBarcosMazoIdBD(int usuarioID) {
+        String consulta = "SELECT Barcos.* FROM Usuario_Barco JOIN Barcos ON Usuario_Barco.id_barco=Barcos.id WHERE Usuario_Barco.id_usuario=? AND Usuario_Barco.es_en_mazo=TRUE";
         ArrayList<Barco> listabarcos = new ArrayList<>();
         try (Connection conexion = ConectarBD.ConectarDB(); PreparedStatement st = conexion.prepareStatement(consulta)) {
             st.setInt(1, usuarioID);
 
             try (ResultSet rs = st.executeQuery()) {
-                if (rs.next()) {
+                while (rs.next()) {
                     Barco barco = new Barco();
                     barco.setId(rs.getInt("id"));
                     barco.setNombre(rs.getString("nombre"));
@@ -150,13 +150,14 @@ public class ComprobarBarcoBD {
                     listabarcos.add(barco);
                 }
             }
+           
+
             return listabarcos;
 
         } catch (SQLException ex) {
             Logger.getLogger(ComprobarBarcoBD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
-
-        return null;
 
     }
 

@@ -27,10 +27,10 @@
                   </Label>
                </children>
             </VBox>
-            <Button fx:id="btnAtaque1" layoutX="700.0" layoutY="41.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" text="ataque 1" />
-            <Button fx:id="btnAtaque3" layoutX="700.0" layoutY="107.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" text="ataque 3" />
-            <Button fx:id="btnAtaque2" layoutX="925.0" layoutY="41.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" text="ataque 2" />
-            <Button fx:id="btnAtaque4" layoutX="925.0" layoutY="107.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" text="ataque 4" />
+            <Button fx:id="btnAtaque1" layoutX="700.0" layoutY="41.0" mnemonicParsing="false" onAction="#realizarAtaque" prefHeight="25.0" prefWidth="179.0" text="ataque 1" />
+            <Button fx:id="btnAtaque3" layoutX="700.0" layoutY="107.0" mnemonicParsing="false" onAction="#realizarAtaque" prefHeight="25.0" prefWidth="179.0" text="ataque 3" />
+            <Button fx:id="btnAtaque2" layoutX="925.0" layoutY="41.0" mnemonicParsing="false" onAction="#realizarAtaque" prefHeight="25.0" prefWidth="179.0" text="ataque 2" />
+            <Button fx:id="btnAtaque4" layoutX="925.0" layoutY="107.0" mnemonicParsing="false" onAction="#realizarAtaque" prefHeight="25.0" prefWidth="179.0" text="ataque 4" />
          </children>
       </Pane>
       <StackPane prefHeight="679.0" prefWidth="1320.0">

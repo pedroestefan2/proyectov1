@@ -15,32 +15,34 @@ import java.util.Random;
  *
  * @author pedro
  */
-public class ControladorIA extends ControladorUsuario{
+public class ControladorIA extends ControladorUsuario {
 
-    private ArrayList<Barco> mazo ;
+    private ArrayList<Barco> mazo;
     Random random = new Random();
+
     public ControladorIA(Usuario usuario) {
         super(usuario);
     }
-    public boolean realizarAccion(ControladorUsuario def){
-        EstadoBarcoBatalla barco=this.getPrimerVivo();
-        EstadoBarcoBatalla defensor=def.getPrimerVivo();
-                // Elegir un movimiento usable aleatorio
+
+    public boolean realizarAccion(ControladorUsuario def) {
+        EstadoBarcoBatalla barco = this.getPrimerVivo();
+        EstadoBarcoBatalla defensor = def.getPrimerVivo();
+        // Elegir un movimiento usable aleatorio
         ArrayList<Movimiento> movimientosUsables = new ArrayList<>();
         for (Movimiento m : barco.getMovimientos()) {
             if (m != null && m.getPp() > 0 && m.isUsable()) {
                 movimientosUsables.add(m);
             }
         }
-          if (movimientosUsables.isEmpty()) {
+        if (movimientosUsables.isEmpty()) {
             System.out.println("[IA] No tiene movimientos utilizables.");
             return false;
         }
 
         Movimiento movElegido = movimientosUsables.get(random.nextInt(movimientosUsables.size()));
 
-        System.out.println("[IA] El barco " + barco.getBarco().getNombre() +
-                           " ataca con " + movElegido.getNombre());
+        System.out.println("[IA] El barco " + barco.getBarco().getNombre()
+                + " ataca con " + movElegido.getNombre());
 
         int daño = this.ataque(barco, defensor, movElegido);
 
@@ -53,18 +55,16 @@ public class ControladorIA extends ControladorUsuario{
         }
 
         return false;
-    } 
-    
+    }
 
 //    creamos un metodo para cambiar barcos al inicio del combate
     public static ArrayList<Barco> CambiarBarcoMazoIA(Usuario usuario) {
-        ArrayList<Barco> barcosTotales = ComprobarBarcoBD.BuscarBarcosUsuarioBD(usuario);
+        ArrayList<Barco> barcosTotales = ComprobarBarcoBD.BuscarBarcosUsuarioIdBD(usuario.getId());
         ComprobarBarcoBD.QuitarBarcosMazo(usuario);
 
         Random rand = new Random();
 
         ArrayList<Barco> seleccionFinal = new ArrayList<>();
-        ArrayList<Barco> copiaBarcosTotales = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
             int num = rand.nextInt(barcosTotales.size());
@@ -77,4 +77,4 @@ public class ControladorIA extends ControladorUsuario{
 
     }
 
-    }
+}

@@ -49,10 +49,16 @@ public class BatallaBarcos {
     }
 
     private void pasarTurno() {
-        turno = (turno == 1) ? 2 : 1;
+        if (turno == 1) {
+            turno = 2;
+        } else {
+            turno = 1;
+        }
         iniciarTurno();
     }
 
+    public int getTurno() {
+        return turno;
+    }
+
 }
-
-
