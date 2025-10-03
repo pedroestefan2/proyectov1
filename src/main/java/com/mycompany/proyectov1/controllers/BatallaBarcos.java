@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyectov1.controllers;
 
+import com.mycompany.proyectov1.models.Movimiento;
 import javafx.animation.PauseTransition;
 import javafx.util.Duration;
 
@@ -59,6 +60,32 @@ public class BatallaBarcos {
 
     public int getTurno() {
         return turno;
+    }
+
+    //combate
+    public String realizarAtaqueJugador(int num, Movimiento movimiento) {
+        String resultado = "";
+        EstadoBarcoBatalla atacante;
+        EstadoBarcoBatalla defensor;
+        if (num == 1) {
+            atacante = jugador1.getBarcoSeleccionado();
+            defensor = jugador2.getBarcoSeleccionado();
+        } else {
+            defensor = jugador1.getBarcoSeleccionado();
+            atacante = jugador2.getBarcoSeleccionado();
+        }
+
+        if (atacante == null) {
+            resultado = "No hay barco seleccionado para el atacante.";
+        }
+        if (defensor == null) {
+            resultado = "No hay barco seleccionado para el defensor.";
+        }
+        if (movimiento == null) {
+            resultado = "Movimiento inválido.";
+        }
+        return null;
+
     }
 
 }

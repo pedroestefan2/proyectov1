@@ -204,7 +204,7 @@ public class FXML_BattleMaquinaController implements Initializable, ControladorC
             }
         }
     }
-
+   
     @FXML
     private void realizarAtaque(ActionEvent event) {
         if (controladorJugador.getBarcoSeleccionado() == null) {
@@ -255,5 +255,22 @@ public class FXML_BattleMaquinaController implements Initializable, ControladorC
 
         // Usamos una pausa para que el turno de la IA no sea instantáneo
     }
+    
+    
+//       private void iniciarContador() {
+//        Timeline timeline = new Timeline(
+//            new KeyFrame(Duration.seconds(1), e -> {
+//                contador--;
+//                if (contador >= 0) {
+//                    label.setText(String.valueOf(contador));
+//                }
+//                if (contador == 0) {
+//                    label.setText("¡Tiempo terminado!");
+//                }
+//            })
+//        );
+//        timeline.setCycleCount(31); // de 30 a 0 incluye 31 pasos
+//        timeline.play();
+//    }
 
 }
