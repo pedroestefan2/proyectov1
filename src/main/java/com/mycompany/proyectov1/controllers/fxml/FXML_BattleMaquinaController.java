@@ -16,8 +16,11 @@ import com.mycompany.proyectov1.models.Movimiento;
 import com.mycompany.proyectov1.models.Usuario;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,6 +47,9 @@ public class FXML_BattleMaquinaController implements Initializable, ControladorC
     private Usuario usuarioIA;
     private ControladorUsuario controladorJugador;
     private ControladorIA controladorIA;
+    private String log = "Seleciona un Barco";
+    private Timeline timelineContador;
+    private int contadorSegundos = 30;
 
     @FXML
     private Label lbContador;
@@ -95,6 +101,9 @@ public class FXML_BattleMaquinaController implements Initializable, ControladorC
 
         this.batalla = new BatallaBarcos(this.controladorJugador, this.controladorIA);
         actualizarUI();
+        if (batalla.getTurno() == 1) {
+            iniciarContador(); // Empieza el contador si es el turno del jugador
+        }
     }
 
     private void actualizarUI() {
@@ -103,7 +112,7 @@ public class FXML_BattleMaquinaController implements Initializable, ControladorC
         }
         lbUsuario1.setText(controladorJugador.getNombre());
         lbUsuario2.setText(controladorIA.getNombre());
-
+        lbDatosCombate.setText(log);
         //barcos jugador
         ArrayList<EstadoBarcoBatalla> barcosJugador = controladorJugador.getListabarcos();
 
@@ -143,6 +152,32 @@ public class FXML_BattleMaquinaController implements Initializable, ControladorC
 
     }
 
+    private void iniciarContador() {
+        // Detener cualquier contador previo
+        if (timelineContador != null) {
+            timelineContador.stop();
+        }
+
+        contadorSegundos = 30;
+        lbContador.setText("00:30");
+
+        timelineContador = new Timeline(
+                new KeyFrame(Duration.seconds(1), e -> {
+                    contadorSegundos--;
+                    lbContador.setText("00:" + String.valueOf(contadorSegundos));
+
+                    if (contadorSegundos <= 0) {
+                        timelineContador.stop();
+                        lbDatosCombate.setText("¡Tiempo agotado! Turno perdido.");
+                        batalla.jugadorRealizaAccion(); // Pasa automáticamente al siguiente turno
+                        ejecutarTurnoIA(); // Si es el turno de la IA, lanza su turno
+                    }
+                })
+        );
+        timelineContador.setCycleCount(30);
+        timelineContador.play();
+    }
+
     @FXML
     private void CambiarBarcoSelecionado(ActionEvent event) {
 
@@ -152,7 +187,7 @@ public class FXML_BattleMaquinaController implements Initializable, ControladorC
         //Asignar botones
         if (boton == btnBarco1 && barcosJugador.size() > 0) {
             barcoSeleccionar = barcosJugador.get(0);
-            controladorJugador.setBarcoSeleccionado(barcosJugador.get(0));
+
         } else if (boton == btnBarco2 && barcosJugador.size() > 1) {
             barcoSeleccionar = barcosJugador.get(1);
         } else if (boton == btnBarco3 && barcosJugador.size() > 2) {
@@ -163,7 +198,7 @@ public class FXML_BattleMaquinaController implements Initializable, ControladorC
         if (barcoSeleccionar != null && barcoSeleccionar.getEstaVivo()) {
             controladorJugador.setBarcoSeleccionado(barcoSeleccionar);
 
-            lbDatosCombate.setText("Has seleccionado a " + controladorJugador.getBarcoSeleccionado().getBarco().getNombre() + ". Elige un ataque.");
+            // lbDatosCombate.setText("Has seleccionado a " + controladorJugador.getBarcoSeleccionado().getBarco().getNombre() + ". Elige un ataque.");
             //cambiar botones y imagenes
             String rutaimg = controladorJugador.getBarcoSeleccionado().getBarco().getImagen();
             imgBarco1.setImage(new Image(getClass().getResourceAsStream(rutaimg)));
@@ -204,7 +239,7 @@ public class FXML_BattleMaquinaController implements Initializable, ControladorC
             }
         }
     }
-   
+
     @FXML
     private void realizarAtaque(ActionEvent event) {
         if (controladorJugador.getBarcoSeleccionado() == null) {
@@ -232,6 +267,15 @@ public class FXML_BattleMaquinaController implements Initializable, ControladorC
         if (movimientoUsado != null) {
             // 3. Ejecutar el ataque
 
+            if (!controladorJugador.getBarcoSeleccionado().isUsable(movimientoUsado)) {
+                log = "Movimiento no Disponible";
+                System.out.println("Mov no disponible");
+                actualizarUI();
+                return;
+            }
+
+            log = controladorJugador.ataque(controladorJugador.getBarcoSeleccionado(), controladorIA.getBarcoSeleccionado(), movimientoUsado);
+
             actualizarUI();
 
             // 5. Comprobar si la IA ha perdido
@@ -242,35 +286,55 @@ public class FXML_BattleMaquinaController implements Initializable, ControladorC
             }
 
             // 6. Iniciar el turno de la IA después de un breve retraso
+            batalla.pasarTurno();
             ejecutarTurnoIA();
         }
     }
 
     private void ejecutarTurnoIA() {
         // Deshabilitamos los botones del jugador para que no pueda actuar durante el turno de la IA
+         if (batalla.getTurno() != 2) {
+            return;
+        }
         btnAtaque1.setDisable(true);
         btnAtaque2.setDisable(true);
         btnAtaque3.setDisable(true);
         btnAtaque4.setDisable(true);
+        
+        
+        //cambiar barcos si estan muertos o si le da la gana
+        
+        Random randon = new Random();
+        int num = randon.nextInt(0, 4);
+        ArrayList<Movimiento> movimientos = controladorIA.getBarcoSeleccionado().getMovimientos();
+        ArrayList<Movimiento> movimientosDisponibles = new ArrayList<>();
 
+        for (Movimiento mov : movimientos) {
+            if (controladorIA.getBarcoSeleccionado().isUsable(mov)) {
+                movimientosDisponibles.add(mov);
+            }
+        }
+
+// Comprobar si hay movimientos disponibles
+        if (movimientosDisponibles.isEmpty()) {
+            log = "La IA no tiene movimientos disponibles. Turno perdido.";
+            batalla.jugadorRealizaAccion(); // Pasa turno
+            actualizarUI();
+            iniciarContador();
+            return;
+        }
+
+// Elegir uno al azar
+        Random random = new Random();
+        Movimiento movimientoUsado = movimientosDisponibles.get(random.nextInt(movimientosDisponibles.size()));
+
+        log = controladorIA.ataque(controladorIA.getBarcoSeleccionado(), controladorJugador.getBarcoSeleccionado(), movimientoUsado);
+        actualizarUI();
+        iniciarContador();
         // Usamos una pausa para que el turno de la IA no sea instantáneo
+        
+        batalla.pasarTurno();
     }
-    
-    
-//       private void iniciarContador() {
-//        Timeline timeline = new Timeline(
-//            new KeyFrame(Duration.seconds(1), e -> {
-//                contador--;
-//                if (contador >= 0) {
-//                    label.setText(String.valueOf(contador));
-//                }
-//                if (contador == 0) {
-//                    label.setText("¡Tiempo terminado!");
-//                }
-//            })
-//        );
-//        timeline.setCycleCount(31); // de 30 a 0 incluye 31 pasos
-//        timeline.play();
-//    }
 
+//      
 }

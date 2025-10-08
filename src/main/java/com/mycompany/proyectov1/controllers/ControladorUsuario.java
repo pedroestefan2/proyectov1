@@ -26,11 +26,11 @@ public class ControladorUsuario {
         this.id = usuario.getId();
         this.nombre = usuario.getNombreUsuario();
         for (Barco b : ComprobarBarcoBD.BuscarBarcosMazoIdBD(id)) {
-            System.out.println(usuario.getNombreUsuario()+"---rrrr"+b.getNombre());
+            System.out.println(usuario.getNombreUsuario() + "---rrrr" + b.getNombre());
             listabarcos.add(new EstadoBarcoBatalla(b));// no hace falta comprobar creo
         }
-        
-        this.barcoSeleccionado=this.getPrimerVivo();
+
+        this.barcoSeleccionado = this.getPrimerVivo();
     }
 
     public int getId() {
@@ -61,8 +61,6 @@ public class ControladorUsuario {
     public void setBarcoSeleccionado(EstadoBarcoBatalla barcoSeleccionado) {
         this.barcoSeleccionado = barcoSeleccionado;
     }
-    
-    
 
     public ArrayList<EstadoBarcoBatalla> getEstanvivos() {
         ArrayList<EstadoBarcoBatalla> listabarcosVivos = new ArrayList<>();
@@ -82,13 +80,15 @@ public class ControladorUsuario {
         }
     }
 
-    //devuelve el daño  positivo ataque daño negativo curarse 
-    public int ataque(EstadoBarcoBatalla atacante, EstadoBarcoBatalla defensor, Movimiento mov) {
+    //hace los cambios y delbuelve el mensaje del log
+    public String ataque(EstadoBarcoBatalla atacante, EstadoBarcoBatalla defensor, Movimiento mov) {
+        
+        
         double acierto = mov.getAcierto();
         int aleatorio = (int) (Math.random() * 100) + 1;
         if (aleatorio > acierto) {
-            System.out.println("ataque fallido");
-            return 0;
+            return "ataque fallido";
+
         }
 
         // 2. Si es curación
@@ -97,8 +97,8 @@ public class ControladorUsuario {
             int vidaMax = atacante.getBarco().getVida();
             int nuevaVida = atacante.getVidaActual() + curacion;
             atacante.setVidaActual(Math.min(nuevaVida, vidaMax));
-            System.out.println("El barco se curó " + curacion + " puntos de vida.");
-            return -curacion;
+            return "El barco se curó " + curacion + " puntos de vida.";
+
         }
 
         // 3. Obtener valores base
@@ -136,9 +136,7 @@ public class ControladorUsuario {
         }
 
         // 8. Mostrar resultado
-        System.out.println("Ataque acertado: " + dañoFinal + " de daño. Efectividad: " + efectividad);
-
-        return dañoFinal;
+        return "Ataque acertado: " + dañoFinal + " de daño. Efectividad: " + efectividad;
 
     }
 

@@ -17,7 +17,7 @@ public class BatallaBarcos {
     private ControladorUsuario jugador1;
     private ControladorUsuario jugador2;
     private int turno;
-    private PauseTransition temporizadorTurno;
+   
 
     public BatallaBarcos(ControladorUsuario j1, ControladorUsuario j2) {
         this.jugador1 = j1;
@@ -30,26 +30,17 @@ public class BatallaBarcos {
         System.out.println("Turno " + turno + " iniciado.");
 
         // Si hay un temporizador activo, lo cancelamos
-        if (temporizadorTurno != null) {
-            temporizadorTurno.stop();
-        }
-
-        temporizadorTurno = new PauseTransition(Duration.seconds(30));
-        temporizadorTurno.setOnFinished(event -> {
-            System.out.println("Tiempo agotado. Pasando turno automáticamente.");
-            pasarTurno();
-        });
-        temporizadorTurno.play();
+        
     }
 
     public void jugadorRealizaAccion() {
         System.out.println("Jugador " + turno + " realizó su acción.");
         // Detenemos el temporizador porque el jugador ya actuó
-        temporizadorTurno.stop();
+        
         pasarTurno();
     }
 
-    private void pasarTurno() {
+    public void pasarTurno() {
         if (turno == 1) {
             turno = 2;
         } else {
@@ -63,29 +54,4 @@ public class BatallaBarcos {
     }
 
     //combate
-    public String realizarAtaqueJugador(int num, Movimiento movimiento) {
-        String resultado = "";
-        EstadoBarcoBatalla atacante;
-        EstadoBarcoBatalla defensor;
-        if (num == 1) {
-            atacante = jugador1.getBarcoSeleccionado();
-            defensor = jugador2.getBarcoSeleccionado();
-        } else {
-            defensor = jugador1.getBarcoSeleccionado();
-            atacante = jugador2.getBarcoSeleccionado();
-        }
-
-        if (atacante == null) {
-            resultado = "No hay barco seleccionado para el atacante.";
-        }
-        if (defensor == null) {
-            resultado = "No hay barco seleccionado para el defensor.";
-        }
-        if (movimiento == null) {
-            resultado = "Movimiento inválido.";
-        }
-        return null;
-
-    }
-
 }

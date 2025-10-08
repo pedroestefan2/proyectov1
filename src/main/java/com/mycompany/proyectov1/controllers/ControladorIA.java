@@ -5,6 +5,7 @@
 package com.mycompany.proyectov1.controllers;
 
 import com.mycompany.proyectov1.dao.ComprobarBarcoBD;
+import com.mycompany.proyectov1.dao.MovimientosBD;
 import com.mycompany.proyectov1.models.Barco;
 import com.mycompany.proyectov1.models.Movimiento;
 import com.mycompany.proyectov1.models.Usuario;
@@ -24,37 +25,63 @@ public class ControladorIA extends ControladorUsuario {
         super(usuario);
     }
 
-    public boolean realizarAccion(ControladorUsuario def) {
-        EstadoBarcoBatalla barco = this.getPrimerVivo();
-        EstadoBarcoBatalla defensor = def.getPrimerVivo();
-        // Elegir un movimiento usable aleatorio
-        ArrayList<Movimiento> movimientosUsables = new ArrayList<>();
-        for (Movimiento m : barco.getMovimientos()) {
-            if (m != null && m.getPp() > 0 && m.isUsable()) {
-                movimientosUsables.add(m);
-            }
-        }
-        if (movimientosUsables.isEmpty()) {
-            System.out.println("[IA] No tiene movimientos utilizables.");
-            return false;
+    @Override
+    public String ataque(EstadoBarcoBatalla atacante, EstadoBarcoBatalla defensor, Movimiento mov) {
+
+        double acierto = mov.getAcierto();
+        int aleatorio = (int) (Math.random() * 100) + 1;
+        if (aleatorio > acierto) {
+            return "La IA ha fallado el ataque";
+
         }
 
-        Movimiento movElegido = movimientosUsables.get(random.nextInt(movimientosUsables.size()));
+        // 2. Si es curación
+        if (mov.getPp() < 0 || mov.getTipo().equalsIgnoreCase("curacion")) {
+            int curacion = Math.abs(mov.getPp());
+            int vidaMax = atacante.getBarco().getVida();
+            int nuevaVida = atacante.getVidaActual() + curacion;
+            atacante.setVidaActual(Math.min(nuevaVida, vidaMax));
+            return "El barco enemigo se curo " + curacion + " puntos de vida.";
 
-        System.out.println("[IA] El barco " + barco.getBarco().getNombre()
-                + " ataca con " + movElegido.getNombre());
-
-        int daño = this.ataque(barco, defensor, movElegido);
-
-        if (daño == 0) {
-            System.out.println("[IA] El ataque falló.");
-        } else if (daño < 0) {
-            System.out.println("[IA] El barco se curó " + (-daño) + " puntos.");
-        } else {
-            System.out.println("[IA] Hizo " + daño + " de daño.");
         }
 
-        return false;
+        // 3. Obtener valores base
+        int ataque = atacante.getBarco().getAtaque();
+        int defensa = defensor.getBarco().getDefensa();
+        int poder = mov.getPp();
+
+        // 4. Obtener la efectividad (tipo movimiento vs tipo barco)
+        //dudas
+        int idTipoAtacante = mov.getId_tipo();
+        int idTipoDefensor = MovimientosBD.obtenerIdTipoNombre(defensor.getBarco().getTipo());
+        double efectividad = MovimientosBD.obtenerEfectividad(idTipoAtacante, idTipoDefensor);
+        if (efectividad == 0) {
+            efectividad = 1.0;
+        }
+        // 5. Calcular daño
+        int dañoBase = (ataque + poder) - defensa;
+        dañoBase = Math.max(0, dañoBase); // no permitir negativos
+
+        int dañoFinal = (int) (dañoBase * efectividad);
+        dañoFinal = Math.max(0, dañoFinal); // por si se vuelve a hacer negativo
+
+        // 6. Aplicar daño al defensor
+        int nuevaVidaDefensor = defensor.getVidaActual() - dañoFinal;
+        defensor.setVidaActual(Math.max(0, nuevaVidaDefensor));
+
+        // 7. Restar energía si es especial o ulti
+        switch (mov.getTipo().toLowerCase()) {
+            case "especial":
+                atacante.setEnergiaEspecial(0);
+                break;
+            case "ulti":
+                atacante.setEnergiaUltimate(0);
+                break;
+        }
+
+        // 8. Mostrar resultado
+        return "La IA ha acertado el ataque : " + dañoFinal + " de daño. Efectividad: " + efectividad;
+
     }
 
 //    creamos un metodo para cambiar barcos al inicio del combate

@@ -28,7 +28,7 @@ public class Movimiento {
     }
 
     public Movimiento() {
-        
+
     }
 
     public int getId() {
@@ -70,7 +70,7 @@ public class Movimiento {
     public void setPoder(int poder) {
         this.poder = poder;
     }
-    
+
     public void setAcierto(int acierto) {
         this.acierto = acierto;
     }
@@ -81,10 +81,6 @@ public class Movimiento {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public boolean isUsable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

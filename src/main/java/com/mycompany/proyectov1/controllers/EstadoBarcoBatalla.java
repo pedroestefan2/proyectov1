@@ -73,8 +73,21 @@ public class EstadoBarcoBatalla {
         this.energiaUltimate = energiaUltimate;
     }
 
+    public boolean isUsable(Movimiento movimiento) {//miramos si es usable
+        if (movimiento.getTipo().equals("ulti") && this.energiaUltimate < 50) {
+            return false;
+        } else if (movimiento.getTipo().equals("especial") && this.energiaEspecial < 50) {
+            return false;
+        }
+        return true;
+    }
+
     public ArrayList<Movimiento> getMovimientos() {
         return movimientos;
+    }
+
+    public ArrayList<Movimiento> getMovimientosTurno() {
+        return movimientosTurno;
     }
 
     public void setMovimientos(ArrayList<Movimiento> movimientos) {
