@@ -52,6 +52,8 @@ public class FXML_BattleMaquinaController implements Initializable, ControladorC
     private int contadorSegundos = 30;
 
     @FXML
+    private Label turnoMostrar;
+    @FXML
     private Label lbContador;
     @FXML
     private Label lbUsuario1;
@@ -287,53 +289,69 @@ public class FXML_BattleMaquinaController implements Initializable, ControladorC
 
             // 6. Iniciar el turno de la IA después de un breve retraso
             batalla.pasarTurno();
+            turnoMostrar.setText("Turno ia");
             ejecutarTurnoIA();
         }
     }
 
     private void ejecutarTurnoIA() {
         // Deshabilitamos los botones del jugador para que no pueda actuar durante el turno de la IA
-         if (batalla.getTurno() != 2) {
+        if (batalla.getTurno() != 2) {
             return;
         }
+
         btnAtaque1.setDisable(true);
         btnAtaque2.setDisable(true);
         btnAtaque3.setDisable(true);
         btnAtaque4.setDisable(true);
-        
-        
-        //cambiar barcos si estan muertos o si le da la gana
-        
-        Random randon = new Random();
-        int num = randon.nextInt(0, 4);
-        ArrayList<Movimiento> movimientos = controladorIA.getBarcoSeleccionado().getMovimientos();
-        ArrayList<Movimiento> movimientosDisponibles = new ArrayList<>();
 
-        for (Movimiento mov : movimientos) {
-            if (controladorIA.getBarcoSeleccionado().isUsable(mov)) {
-                movimientosDisponibles.add(mov);
+        PauseTransition pausa = new PauseTransition(Duration.seconds(1.5));
+        pausa.setOnFinished(event -> {
+            //cambiar barcos si estan muertos o si le da la gana
+            ArrayList<EstadoBarcoBatalla> barcosIA = controladorIA.getListabarcos();
+
+            if (!controladorIA.getBarcoSeleccionado().getEstaVivo()) {
+                barcosIA.remove(controladorIA.getBarcoSeleccionado());
+                controladorIA.setBarcoSeleccionado(barcosIA.get(0));
             }
-        }
+
+            Random randon = new Random();
+            int num = randon.nextInt(0, 4);
+            ArrayList<Movimiento> movimientos = controladorIA.getBarcoSeleccionado().getMovimientos();
+            ArrayList<Movimiento> movimientosDisponibles = new ArrayList<>();
+
+            for (Movimiento mov : movimientos) {
+                if (controladorIA.getBarcoSeleccionado().isUsable(mov)) {
+                    movimientosDisponibles.add(mov);
+                }
+            }
 
 // Comprobar si hay movimientos disponibles
-        if (movimientosDisponibles.isEmpty()) {
-            log = "La IA no tiene movimientos disponibles. Turno perdido.";
-            batalla.jugadorRealizaAccion(); // Pasa turno
-            actualizarUI();
-            iniciarContador();
-            return;
-        }
+            if (movimientosDisponibles.isEmpty()) {
+                log = "La IA no tiene movimientos disponibles. Turno perdido.";
+                batalla.jugadorRealizaAccion(); // Pasa turno
+                actualizarUI();
+                iniciarContador();
+
+            } else {
 
 // Elegir uno al azar
-        Random random = new Random();
-        Movimiento movimientoUsado = movimientosDisponibles.get(random.nextInt(movimientosDisponibles.size()));
+                Random random = new Random();
+                Movimiento movimientoUsado = movimientosDisponibles.get(random.nextInt(movimientosDisponibles.size()));
 
-        log = controladorIA.ataque(controladorIA.getBarcoSeleccionado(), controladorJugador.getBarcoSeleccionado(), movimientoUsado);
-        actualizarUI();
-        iniciarContador();
-        // Usamos una pausa para que el turno de la IA no sea instantáneo
-        
-        batalla.pasarTurno();
+                log = controladorIA.ataque(controladorIA.getBarcoSeleccionado(), controladorJugador.getBarcoSeleccionado(), movimientoUsado);
+                actualizarUI();
+                iniciarContador();
+            }
+            // Usamos una pausa para que el turno de la IA no sea instantáneo
+            btnAtaque1.setDisable(false);
+            btnAtaque2.setDisable(false);
+            btnAtaque3.setDisable(false);
+            btnAtaque4.setDisable(false);
+            turnoMostrar.setText("Turno Jugador");
+            batalla.pasarTurno();
+        });
+        pausa.play();
     }
 
 //      
